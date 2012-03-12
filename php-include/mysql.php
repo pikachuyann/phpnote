@@ -2,7 +2,7 @@
 	// Bonjour, ceci est un hack relativement sale pour forcer la déconnexion au serveur MySQL à la fin de chaque script
 	class MySql_connexion {
 		function __construct() {
-			$this->sqlPointer=mysql_connect("localhost","phpnote","hVW2np7QJwdxhhYd")k;
+			$this->sqlPointer=mysql_connect("localhost","phpnote","hVW2np7QJwdxhhYd");
 			mysql_select_db("phpnote",$this->sqlPointer);
 		}
 		function __destruct() {
