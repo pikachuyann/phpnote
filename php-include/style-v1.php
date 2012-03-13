@@ -1,4 +1,9 @@
 <?php
+	if !(droit_suffisant(ADHERENTS, $_SESSION['droits_user'])
+	   {
+	        // On redirige vers login.php
+	   }
+
 	function haut_de_page($userinfo,$titre="") {
 		// Userinfo contiendra les données de l'utilisateur dont en aprticulier ses droits (ça pourrait être utile...)
 		if ($titre != "") { $titre = " :: "; }
