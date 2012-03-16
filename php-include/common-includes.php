@@ -3,6 +3,7 @@
 	date_default_timezone_set("Europe/Paris");
 	$time=time();
 
+        include("../php-include/config.php");
 	include("../php-include/mysql.php");
 	include("../php-include/style-v1.php");
 	include("../php-include/droits.php");
@@ -22,4 +23,14 @@
 			$userinfo=$answer;			
 		}
 	}	
+
+function protect($text)
+{
+  return(mysql_real_escape_string(htmlspecialchars($text)));
+}
+
+function mash($text)
+{
+  return(md5($text));
+}
 ?>
