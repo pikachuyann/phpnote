@@ -33,7 +33,9 @@ BODY {
 }
 
 .titre_de_page {
-	text-transform:capitalize;
+	font-variant:small-caps;
+	text-align:center;
+	font-weight:bold;
 }
 .bottom_credits {
 	border-top:solid 1px #3d496f;
