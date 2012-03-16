@@ -31,7 +31,7 @@
 	function bas_de_page($userinfo) {
 		// Userinfo n'est pas forcément utile ?
 ?>
-<div class='bottom_credits'> phpNote Version &alpha;, cod&eacute;e par <i>Skippy</i> et <i>pika</i>, et parce que <i>ju&ccirc;jo</i> est un charg&eacute; de projet trollesque... </div>
+<div class='bottom_credits'> phpNote Version &alpha;, cod&eacute;e par <i>Skippy</i> et <i>pika</i>, et parce que <i>ju&#x0109;jo</i> est un charg&eacute; de projet trollesque... </div>
 </body>
 </html>
 <?php
