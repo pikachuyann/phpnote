@@ -4,3 +4,8 @@ BODY {
 	margin:auto;
 	width:800px;
 }
+
+.header_time {
+	font-size:Small;
+	text-align:right;
+}
