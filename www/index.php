@@ -6,7 +6,7 @@
 	else {
 	haut_de_page($userinfo);
 ?>
-<p>Bienvenue sur phpNote, la <i>note Kfet</i> en php en cours de d&eacute;veloppement!</p>
+<p>Bienvenue sur phpNote, la <i>note Kfet</i> en php en cours de d&eacute;veloppement !</p>
 <p>Vous pouvez utiliser le menu ci-dessus pour naviguer dans la note Kfet !</p>
 <?php	bas_de_page($userinfo);	
 	}	?>
