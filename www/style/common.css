@@ -3,11 +3,11 @@ BODY {
 	color:#3d496f;
 	margin:auto;
 	width:800px;
-	font-size:12px;
+	font-size:14px;
 	font-family:Verdana;
 }
 .header_infos {
-	font-size:Small;
+	font-size:12px;
 }
 .header_info_time {
 	float:right;
@@ -42,6 +42,6 @@ BODY {
 .bottom_credits {
 	border-top:solid 1px #3d496f;
 	margin-top:10px;
-	font-size:Small;
+	font-size:12px;
 	text-align:center;
 }
