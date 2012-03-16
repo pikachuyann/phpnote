@@ -24,6 +24,7 @@
 	function bas_de_page($userinfo) {
 		// Userinfo n'est pas forcément utile ?
 ?>
+<div class='bottom_credits'> phpNote Version &alpha;, cod&eacute;e par <i>Skippy</i> et <i>pika</i>. </div>
 </body>
 </html>
 <?php
