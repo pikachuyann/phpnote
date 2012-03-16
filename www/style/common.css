@@ -32,6 +32,7 @@ BODY {
 	font-weight:bold;
 }
 .bottom_credits {
+	border-top:solid 1px #3d496f;
 	margin-top:10px;
 	font-size:Small;
 	text-align:center;
