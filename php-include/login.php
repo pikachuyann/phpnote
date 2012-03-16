@@ -15,7 +15,7 @@ function gen_sid()
 
 function do_login($post)
 {
-  global $sqlPointer;
+  global $sqlPointer,$_COOKIE,$userinfo;
   $req = "SELECT numcbde FROM adherents 
           WHERE pseudo='".protect($post['user'])."' 
             AND motdepasse='".mash($post['pwd'])."'
@@ -34,11 +34,13 @@ function do_login($post)
 	  $t = mysql_fetch_array($reponse);
 	}
       while($t['c'] != 0);
-		    echo $s;
       $req = "INSERT INTO sid (sid, expircomplet, expiration, numcbde)
               VALUES ('".$s."', '".date("Y-m-d H:i:s", time()+TEMPS_EXPIRCOMPLET)."', '".date("Y-m-d H:i:s", time()+TEMPS_EXPIRE)."', ".$traiter['numcbde'].");";
       mysql_query($req, $sqlPointer);
       setcookie('sid', $s);
+      $reqb = "SELECT * FROM adherents WHERE numcbde='".$traiter['numcbde']."'";
+      $userinfo=mysql_fetch_assoc(mysql_query($reqb));
+      $_COOKIE['sid']=$s;
 
       return 0;
     }
