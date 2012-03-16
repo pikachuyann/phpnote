@@ -13,6 +13,21 @@ BODY {
 .header_info_text {
 	float:left;
 }
+
+.header_menu {
+	text-align:center;
+}
+.header_menu SPAN {
+	width:500px;
+	border:solid 2px #3d496f;
+}
+.header_menu A {
+	font-decoration:none;
+	color:#3d496f;
+}
+.header_menu A:hover {
+	font-weight:bold;
+}
 .bottom_credits {
 	margin-top:10px;
 	font-size:Small;
