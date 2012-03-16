@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class='header_infos'>
-<span class='header_info_text'>Vive la O&ucirc;EstChar[list] !</span> &nbsp;
+<span class='header_info_text' style='color:red;'>Vive la O&ugrave;EstChar[list] !</span> &nbsp;
 <span class='header_info_time'>Nous sommes le <?= strftime("%A %e %B") ?>, et il est <?= strftime("%H:%M") ?>.</span>
 </div>
 <div class='header_menu'><div>

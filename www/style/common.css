@@ -18,9 +18,10 @@ BODY {
 }
 .header_menu DIV {
 	text-align:center;
-	margin-left:100px;
-	width:600px;
-	min-width:600px;
+	margin-left:50px;
+	margin-bottom:20px;
+	width:700px;
+	min-width:700px;
 	border:solid 2px #3d496f;
 }
 .header_menu A {
