@@ -17,7 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="style/common.css" />
 </head>
 <body>
-<div class='header_time'>Nous sommes le <?= date("l j F") ?></div>
+<div class='header_time'>Nous sommes le <?= strftime("%A %e %B") ?></div>
 <?php
 	}
 
