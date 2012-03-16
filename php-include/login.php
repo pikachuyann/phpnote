@@ -24,7 +24,6 @@ function do_login($post)
   //echo $req;
   if ($traiter = mysql_fetch_array($reponse))
     {
-		    echo $traiter['numcbde'];
       do
 	{
 	  $s = gen_sid();

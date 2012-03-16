@@ -3,6 +3,8 @@ BODY {
 	color:#3d496f;
 	margin:auto;
 	width:800px;
+	font-size:12px;
+	font-family:Verdana;
 }
 .header_infos {
 	font-size:Small;
