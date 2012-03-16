@@ -1,7 +1,7 @@
 <?php
 	include("../php-include/common-includes.php");
 	if ($userinfo["numcbde"] == -1) {	
-		login_page("test_login.php");
+		login_page("test_login.php","Salut ? Qui es-tu ?");
 	}
 	else {
 	haut_de_page($userinfo);
