@@ -1,6 +1,10 @@
 <?php
 	include("../php-include/common-includes.php");
-	if ($userinfo["numcbde"] == -1) {	
+if (isset($_POST['user']) & isset($_POST['pwd']))
+  {
+    do_login($_POST);
+  }
+        if ($userinfo["numcbde"] == -1) {	
 		login_page("index.php","Salut ? Qui es-tu ?");
 	}
 	else {

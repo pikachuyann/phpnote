@@ -9,6 +9,7 @@
 		// Userinfo contiendra les données de l'utilisateur dont en aprticulier ses droits (ça pourrait être utile...)
 		if ($titre != "") { $titre = "$titre :: "; }
 		$messages=file("../php-include/messages");
+		$droits=$userinfo["droits"];
 		$up_message=$messages[rand(0,(count($messages)-1))];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -26,6 +27,7 @@
 <div class='header_menu'><div>
 	<a href='/'>Index</a>
 	<?php if ($userinfo["numcbde"]==-1) {	?><a href='/preinscription.php'>Pr&eacute;inscription</a><?php	} ?>
+	<?php if (droits_suffisants(INTRANET,$droits)) { ?><a href='?delog=1'>Se d&eacute;connecter</a><?php	}	?>
 </div></div>
 <?php
 	}
