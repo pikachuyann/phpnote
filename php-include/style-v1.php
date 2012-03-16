@@ -21,10 +21,10 @@
 <span class='header_info_text'>Vive la O&ucirc;EstChar[list] !</span> &nbsp;
 <span class='header_info_time'>Nous sommes le <?= strftime("%A %e %B") ?>, et il est <?= strftime("%H:%M") ?>.</span>
 </div>
-<div class='header_menu'>
+<div class='header_menu'><div>
 	<a href='/'>Index</a>
 	<?php if ($userinfo["numcbde"]==-1) {	?><a href='/preinscription.php'>Pr&eacute;inscription</a><?php	} ?>
-</div>
+</div></div>
 <?php
 	}
 

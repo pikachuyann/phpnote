@@ -15,14 +15,16 @@ BODY {
 }
 
 .header_menu {
-	text-align:center;
 }
-.header_menu SPAN {
-	width:500px;
+.header_menu DIV {
+	text-align:center;
+	margin-left:100px;
+	width:600px;
+	min-width:600px;
 	border:solid 2px #3d496f;
 }
 .header_menu A {
-	font-decoration:none;
+	text-decoration:none;
 	color:#3d496f;
 }
 .header_menu A:hover {
