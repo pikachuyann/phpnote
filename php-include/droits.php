@@ -12,7 +12,7 @@ for ($i = 0; $i < count($liste_droits); $i++)
 
 function droits_suffisants($droits_requis, $droits_utilisateur)
 {
-  return($droits_requis & $droits_utilisateur == $droits_requis);
+  return(($droits_requis & $droits_utilisateur) == $droits_requis);
 }
 
 function msg_nondroits($droit)
