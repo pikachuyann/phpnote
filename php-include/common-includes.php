@@ -1,5 +1,5 @@
 <?php
-	setlocale(LC_ALL, 'fr_FR@euro', 'fr_FR', 'fr', 'fr'); 
+	setlocale(LC_TIME, 'fr_FR.utf8'); 
 	date_default_timezone_set("Europe/Paris");
 	$time=time();
 
