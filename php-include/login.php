@@ -1,14 +1,46 @@
 <?php
 
+function gen_sid()
+{
+  global $sqlPointer;
+  $chaine = "azertyuiopqsdfghjklmwxcvbn1234567890";
+    // Non mon clavier n'est pas du tout un azerty !
+  $res = "";
+  for ($i = 0; $i < 32; $i++)
+    {
+      $res .= $chaine[rand(0, 35)];
+    }
+  return($res);
+}
+
 function do_login($post)
 {
+  global $sqlPointer;
   $req = "SELECT numcbde FROM Adherents 
           WHERE pseudo='".protect($post['user'])."' 
             AND motdepasse='".mash($post['pwd'])."'
             AND valide=1;";
-  $reponse = mysql_query($req);
-  // ToDo
-
+  $reponse = mysql_query($req, $sqlPointer);
+  if ($traiter = mysql_fetch_array($reponse))
+    {
+      do
+	{
+	  $s = gen_sid();
+	  $req = "SELECT COUNT(*) AS c FROM sid 
+                  WHERE sid.sid='".$s."';";
+	  $reponse = mysql_query($req);
+	  $t = mysql_fetch_array($reponse);
+	}
+      while($t['c'] != 0);
+      $req = "INSERT INTO sid (sid, expircomplet, expiration, numcbde)
+              VALUES ('".$s."', '".date("Y-m-d H:i:s", time()+TEMPS_EXPIRCOMPLET)."', '".date("Y-m-d H:i:s", time()+TEMPS_EXPIRE)."', ".$traiter['numcbde'].");";
+      mysql_query($req);
+      setcookie('sid', $s);
+    }
+}
+  else
+    { return 1; }
+  // ToDo 
 }
 
 function login_page($source, $msg)	{

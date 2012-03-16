@@ -31,6 +31,10 @@ BODY {
 .header_menu A:hover {
 	font-weight:bold;
 }
+
+.titre_de_page {
+	text-transform:capitalize;
+}
 .bottom_credits {
 	border-top:solid 1px #3d496f;
 	margin-top:10px;
