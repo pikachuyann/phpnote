@@ -11,18 +11,21 @@
 
 	/* Gestion des identifications */
 	if (!isset($_COOKIE["sid"])) {
+	}
+	else {
+		$sid=mysql_real_escape_string($_COOKIE["sid"]);
+		/* Il faudrait trouver un meilleur moyen pour traiter l'expiration des SID */
+		$reply=mysql_query("SELECT * FROM sid, adherents WHERE sid.sid='$sid' AND sid.expiration>NOW() AND sid.numcbde=adherents.numcbde");
+		while ($answer=mysql_fetch_assoc($reply)) { // Le sid étant unique
+			// On a plus ou moins l'userinfo dans la réponse...
+			$userinfo=$answer;		
+		}
+	}	
+
+	if (!isset($userinfo)) {
 		$userinfo["numcbde"]=-1;
 		$userinfo["droits"]=0;
 	}
-	else {
-		$sid=mysql_real_escape($_COOKIE["sid"]);
-		/* Il faudrait trouver un meilleur moyen pour traiter l'expiration des SID */
-		$reply=mysql_query("SELECT * FROM sid, adherents WHERE sid.sid='$sid' AND sid.expiration<$time AND sid.numcbde=adherents.numcbde");
-		while ($answer=mysql_fetch_assoc($reply)) { // Le sid étant unique
-			// On a plus ou moins l'userinfo dans la réponse...
-			$userinfo=$answer;			
-		}
-	}	
 
 function protect($text)
 {
