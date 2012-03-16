@@ -6,8 +6,8 @@ cambouis (si on a bien fait notre boulot) */
 
 // Définit le temps durant lequel une session peut 
 // rester ouverte inactive
-define("TEMPS_EXPIRE", 42);
-define("TEMPS_EXPIRCOMPLET", 23);
+define("TEMPS_EXPIRE", 900); // 15 minutes
+define("TEMPS_EXPIRCOMPLET", 300); // 5 minutes
 
-define("TOTO", 42);
+define("TOTO", 42); // Gné?
 ?>
