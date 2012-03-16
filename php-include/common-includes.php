@@ -5,6 +5,7 @@
 
 	include("../php-include/mysql.php");
 	include("../php-include/style-v1.php");
+	include("../php-include/login.php");
 
 	/* Gestion des identifications */
 	if (!isset($_COOKIE["sid"])) {
