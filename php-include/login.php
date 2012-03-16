@@ -23,7 +23,7 @@ function login_page($source, $msg)	{
 <tr><td>Mot de passe:</td><td><input type="password" name="pwd"/></td></tr>
 <? // Pour la gestion des levels ?>
 <tr><td>Droits:</td>
-  <td><input type="radio" name="level" value="2" id="level2" checked="checked"/><label for="level2">Tout mes droits</label></td></tr>
+  <td><input type="radio" name="level" value="2" id="level2" checked="checked"/><label for="level2">Tous mes droits</label></td></tr>
 <tr><td></td>
   <td><input type="radio" name="level" value="1" id="level1"/><label for="level1">Droits note seulement</label></td></tr>
 <tr><td></td>
