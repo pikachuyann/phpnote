@@ -51,7 +51,7 @@ function login_page($source, $msg)	{
   $userinfo["numcbde"]=-1;
   haut_de_page($userinfo,"Identification n&eacute;cessaire");
 ?>
-<p>Bienvenue sur <strong>phpnote</strong>.</p>
+<!-- <p>Bienvenue sur <strong>phpnote</strong>.</p> -->
 <p><?= $msg ?></p>
 <form method="post" action="<?= $source ?>">
 <table>
