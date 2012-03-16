@@ -7,6 +7,7 @@
 
 	/* Gestion des identifications */
 	if (!isset($_COOKIE["sid"])) {
+		$userinfo["numcbde"]=-1;
 	}
 	else {
 		$sid=mysql_real_escape($_COOKIE["sid"]);
