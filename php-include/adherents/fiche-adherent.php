@@ -18,7 +18,7 @@ function fiche_page($numcbde)
     }
   else
     {
-      $req = "SELECT * FROM adherents WHERE numcbde=".$numcbde.";";
+      $req = "SELECT * FROM adherents WHERE numcbde=".protect($numcbde).";";
       if (!($rep = mysql_query($req, $sqlPointer)))
         {
           echo "<p>L'adh&egrave;rent ".$numcbde." n'a pas &egrave;t&egrave; trouv&egrave;";
@@ -28,11 +28,19 @@ function fiche_page($numcbde)
         {
 ?>
 <form action="modif_adh.php" method="post">
-<p>Fiche de l'adhérent <span style="font-vaviant: small-caps;"><?= adh_textbox("nom", $userinfo['nom'], su(SUPREME)) ?> <?= adh_textbox("prenom", $userinfo['prenom'], su(SUPREME)) ?></span></p>
+<p>Fiche de l'adhérent <span style="font-vaviant: small-caps;"><?= adh_textbox("nom", $info['nom'], su(SUPREME)) ?> <?= adh_textbox("prenom", $info['prenom'], su(SUPREME)) ?></span></p>
 <table>
 <tr><td>Numéro de carte BDE:</td><td><?= $info['numcbde'] ?></td></tr>
 <tr><td>Nom de note:</td><td><?= adh_textbox("pseudo", $info['pseudo'], su(ADHERENTS) | $numcbde == $userinfo['numcbde']) ?></td></tr>
 <tr><td>Solde:</td><td><?= $info['solde'] ?></td></tr>
+<?php 
+   if ((su(ADHERENTS) & $info['droits'] <= $userinfo['droits']) | ($numcbde == $userinfo['numcbde']))
+     {
+?>
+<tr><td></td><td><a href="passwd.php?numcbde=<?= $numcbde ?>">Changer le mot de passe</a></td></tr>
+<?php
+     }
+?>
 <tr><td>Section:</td><td><?= adh_textbox("section", $info['section'], su(ADHERENTS) | $numcbde == $userinfo['numcbde']) ?></td></tr>
 <tr><td>Fonctions:</td><td><?= adh_textbox("fonctions", $info['fonctions'], su(BUREAU)) ?></td></tr>
 <tr><td>email:</td><td><?= adh_textbox("email", $info['email'], su(ADHERENTS) | $numcbde == $userinfo['numcbde']) ?></td></tr>
