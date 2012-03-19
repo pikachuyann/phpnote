@@ -5,7 +5,7 @@
 	   }
 */
 
-	function haut_de_page($userinfo,$titre="") {
+function haut_de_page($userinfo,$titre="", $js_list=array()) {
 		// Userinfo contiendra les données de l'utilisateur dont en aprticulier ses droits (ça pourrait être utile...)
 		if ($titre != "") { $titre = "$titre :: "; }
 		$messages=file("../php-include/messages");
@@ -19,6 +19,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<title><?= $titre ?>phpNote</title>
 	<link rel="stylesheet" type="text/css" href="style/common.css" />
+        <?php
+          foreach($js_list as $script)
+            {
+              echo "<script type=\"text/javascript\" src=\"../js-include/".$script."\" />";
+            }
+	?>
 </head>
 <body>
 <div class='header_infos'>
