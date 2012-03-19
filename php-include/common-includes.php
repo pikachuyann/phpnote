@@ -6,8 +6,6 @@
         include("../php-include/config.php");
 	include("../php-include/mysql.php");
 	include("../php-include/style-v1.php");
-	include("../php-include/droits.php");
-	include("../php-include/login.php");
 
 	/* Gestion des identifications */
 	if (!isset($_COOKIE["sid"])) {
@@ -31,6 +29,10 @@
 		$userinfo["numcbde"]=-1;
 		$userinfo["droits"]=0;
 	}
+
+	include("../php-include/droits.php");
+	include("../php-include/login.php");
+
 
 function protect($text)
 {

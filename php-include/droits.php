@@ -15,6 +15,12 @@ function droits_suffisants($droits_requis, $droits_utilisateur)
   return(($droits_requis & $droits_utilisateur) == $droits_requis);
 }
 
+function su($droits)
+{
+  global $userinfo;
+  return droits_suffisants($droits, $userinfo['droits']);
+}
+
 function msg_nondroits($droit)
 {
   global $liste_droits;
