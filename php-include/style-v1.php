@@ -28,7 +28,7 @@
 <div class='header_menu'><div>
 	<a href='/'>Index</a>
 	<?php if ($userinfo["numcbde"]==-1) {	?><a href='/preinscription.php'>Pr&eacute;inscription</a><?php	} ?>
-	<?php if (droits_suffisants(INTRANET,$droits)) { ?><a href='?delog=1'>Se d&eacute;connecter</a><?php	}	?>
+	<?php if (droits_suffisants(INTRANET,$droits)) { ?><a href='delog.php'>Se d&eacute;connecter</a><?php	}	?>
 </div></div>
 <?php
 	}

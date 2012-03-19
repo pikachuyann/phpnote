@@ -18,7 +18,12 @@
 		$reply=mysql_query("SELECT * FROM sid, adherents WHERE sid.sid='$sid' AND sid.expiration>NOW() AND sid.numcbde=adherents.numcbde");
 		while ($answer=mysql_fetch_assoc($reply)) { // Le sid étant unique
 			// On a plus ou moins l'userinfo dans la réponse...
-			$userinfo=$answer;		
+			$upd_req="";
+			if (strtotime($answer["expircomplet"]) < $time) {
+				$upd_req=", expircomplet='".date("Y-m-d H:i:s", time()+TEMPS_EXPIRCOMPLET)."'";
+			}
+			mysql_query("UPDATE sid SET expiration='".date("Y-m-d H:i:s", time()+TEMPS_EXPIRE)."'$upd_req WHERE sid='$sid'");
+			$userinfo=$answer;
 		}
 	}	
 
