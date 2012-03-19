@@ -17,17 +17,17 @@
 <li> Votre inscription sera ensuite valid&eacute;e par l'un des codeurs de cette phpNote, apr&egrave;s demande de votre part. </li>
 </ul>
 <p> Le formulaire n'est pas encore fonctionnel (hum...) </p>
-<form name='PreInscription'>
-<table class='preinscription'>
-<tr><th> Nom: </th><td> <input type='text' name='nom'> </td></tr>
-<tr><th> Pr&eacute;nom: </th><td> <input type='text' name='prenom'> </td></tr>
-<tr><th> Sexe: </th><td> <select name='sexe'><option value='M'> Masculin </option><option value='F'> F&eacute;minin </option></select> </td>
-<tr><th> Section: </th><td> <input type='text' name='sect'> </td></tr>
-<tr><th> Courriel: </th><td> <input type='text' name='email'> </td></tr>
-<tr><th> T&eacute;l&eacute;phone : </th><td> <input type='text' name='tel'> </td></tr>
-<tr><th> Mot de passe: </th><td> <input type='password' name='mdpA'> </td></tr>
-<tr><th> Confirmation. </th><td> <input type='passowrd' name='mdpB'> </td></tr>
-<tr><th> &nbsp; </th><td> <input type='submit' value='Se pr&eacute;inscrire !'> </td></tr>
+<form action='?' class='formulaire_preinscription'>
+<table>
+<tr><th> Nom : </th><td> <input type='text' name='nom' /> </td></tr>
+<tr><th> Pr&eacute;nom : </th><td> <input type='text' name='prenom' /> </td></tr>
+<tr><th> Sexe : </th><td> <select name='sexe'><option value='M'> Masculin </option><option value='F'> F&eacute;minin </option></select> </td></tr>
+<tr><th> Section : </th><td> <input type='text' name='sect' /> </td></tr>
+<tr><th> Courriel : </th><td> <input type='text' name='email' /> </td></tr>
+<tr><th> T&eacute;l&eacute;phone : </th><td> <input type='text' name='tel' /> </td></tr>
+<tr><th> Mot de passe : </th><td> <input type='password' name='mdpA' /> </td></tr>
+<tr><th> Confirmation : </th><td> <input type='password' name='mdpB' /> </td></tr>
+<tr><th> &nbsp; </th><td> <input type='submit' value='Se pr&eacute;inscrire !' /> </td></tr>
 </table>
 </form>
 <?php	}	else {	?>

@@ -45,3 +45,14 @@ BODY {
 	font-size:12px;
 	text-align:center;
 }
+
+.formulaire_preinscription TH {
+	text-align:right;
+	font-family:Verdana;
+	font-size:14px;
+}
+.formulaire_preinscription INPUT,SELECT {
+	font-family:Verdana;
+	font-size:14px;
+	width:250px;
+}
