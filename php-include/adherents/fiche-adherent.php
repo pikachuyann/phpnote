@@ -32,11 +32,16 @@ function fiche_page($numcbde)
 	     correspondant modifiable si et seulement si on
 	     a les droits (le troisième paramètre)
 	  */
-	  $passe_droit = su(ADHERENTS) | ($info['numcbde'] == $userinfo['numcbe']; 
+	  $passe_droit = su(ADHERENTS) | ($info['numcbde'] == $userinfo['numcbe']); 
 	  // Pour les champs pouvant être modifié par soi-même ou quelqu'un
 	  // qui a les droits ADHERENTS
+	  
+	  $cible = "modif_adherents.php";
+	  if ($info['preinscription'])
+	    $cible = "modif_inscription.php";
+	  // Pour que les inscriptions se passent dans la page inscription
 ?>
-<form action="../php-include/adherents/modif_adh.php" method="post">
+<form action="<?= $cible ?>" method="post">
 <p>Fiche de l'adhérent <span style="font-vaviant: small-caps;"><?= adh_textbox("nom", $info['nom'], su(SUPREME)) ?> <?= adh_textbox("prenom", $info['prenom'], su(SUPREME)) ?></span></p>
 <table>
 <tr><td>Numéro de carte BDE:</td><td><?= $info['numcbde'] ?></td></tr>
@@ -63,8 +68,23 @@ function fiche_page($numcbde)
 <tr><td>email:</td><td><?= adh_textbox("email", $info['email'], $passe_droit) ?></td></tr>
 <tr><td>Num&egrave;ro de t&egtave;l&egrave;phone:</td><td><?= adh_textbox("numero_tel", $info['numero_tel'], $passe_droit) ?></td></tr>
 <tr><td>Probl&eacute;mes de sant&egrave;:</td><td><?= adh_textbox("pb_sante", $info['pb_sante'], $passe_droit) ?></td></tr>
+<?php
+  // Pour utiliser la même fonction pour afficher deux choses différentes
+  // (Quoi je suis sale ??)
+  if (!$info['preinscription'])
+    {
+?>
 <tr><td>Valide:</td><td><?= adh_bool("valide", $info['valide'], su(BUREAU)) ?></td></tr>
 <tr><td></td><td><input type="submit" value="Valider"/></td></tr>
+<?php
+    }
+  else
+    {
+?>
+<tr><td></td><td><input type="submit" value="Valider la pr&egrave;inscription"/></td></tr>
+<?php
+    }
+?>
 <tr><td></td><td><input type="button" value="Retour"/></td></tr>
 </table>
 </form>
