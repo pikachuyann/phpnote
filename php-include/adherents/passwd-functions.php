@@ -21,10 +21,11 @@ function passwd_page($numcbde)
 	  {
 ?>
 <p>Modifier le mot de passe de <span style="font-vaviant: small-caps;"><?= $info['nom'] ?> <?= $info['prenom'] ?></span></p>
-<form action="chgpass.php?numcbde=<?=$_GET['numcbde']" method="post">
+<form action="chgpass.php?>" method="post">
+<input type="hidden" name="numcbde" value="<?= $numcbde ?>" />
 <table>
-<tr><td>Nouveau mot de passe:</td><td><input type="password" name="newpass"/></td></tr>
-<tr><td>Confirmer le mot de passe:</td><td><input type="password" name="newpass_2"/></td></tr>
+<tr><td>Nouveau mot de passe:</td><td><input type="password" name="mdp1"/></td></tr>
+<tr><td>Confirmer le mot de passe:</td><td><input type="password" name="mdp2"/></td></tr>
 <tr><td></td><td><input type="submit" value="Envoyer"/></td></tr>
 </table>
 </form>
