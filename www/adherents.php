@@ -3,7 +3,7 @@
 include('../php-include/common-includes.php');
 include('../php-include/adherents/fiche-adherent.php');
 
-haut_de_page($userinfo, "Informations sur les adh&egrave;rents", 'inputs-adherents.js');
+haut_de_page($userinfo, "Informations sur les adh&egrave;rents", array("inputs-adherents.js"));
 if(isset($_GET['numcbde']))
   {
     fiche_page($_GET['numcbde']);
