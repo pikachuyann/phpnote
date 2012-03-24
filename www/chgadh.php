@@ -2,6 +2,13 @@
 
 include('../php-include/common-includes.php');
 
+function check_to_int($c)
+{
+  if ($c == "checked")
+    return 1;
+  return 0;
+}
+
 $passe_droit = su(ADHERENTS) | ($userinfo['numcbde'] == $_POST['numcbde']);
 
 $req = "UPDATE adherents SET ";
@@ -19,7 +26,7 @@ if ($passe_droit)
       }
     else if (su(BUREAU))
       {
-	$req = $req.", valide=".protect($_POST['valide']);
+	$req = $req.", valide=".check_to_int($_POST['valide']);
       }
     if (su(BUREAU))
       {
@@ -36,7 +43,7 @@ if ($passe_droit)
 	echo "BUG!<br/>";
 	echo $req;
       }
-    else if ($userinfo['numcbde']=$_POST['numcbde'])
+    else if ($userinfo['numcbde'] == $_POST['numcbde'])
       {
 	header('Location: moncompte.php');
       }

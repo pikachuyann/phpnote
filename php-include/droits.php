@@ -1,14 +1,17 @@
 <?php
 
 define("PUBLIC", 0);
-$liste_droits = array("INTRANET", "NOTE", "ADHERENTS", "ACTIVITES", "DROIT_D_ETRE_TOTO");
+$liste_droits = array("INTRANET", "NOTE", "ADHERENTS", "ACTIVITES", "DROIT_D_ETRE_TOTO", "BUREAU", "INSCRIPTION");
 
 $p = 1;
+$s = 0;
 for ($i = 0; $i < count($liste_droits); $i++)
   {
     define($liste_droits[$i], $p);
+    $s += $p;
     $p *= 2;
   }
+define("SUPREME", $s);
 
 function droits_suffisants($droits_requis, $droits_utilisateur)
 {

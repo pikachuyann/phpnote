@@ -3,7 +3,7 @@
 function adh_textbox($nom_de_sortie, $par_defaut, $modifiable)
 {
 ?>
-<span id="textbox"<?php 
+<span id="textbox_<?= $nom_de_sortie ?>"<?php 
   if ($modifiable) 
     { 
 ?> onClick="adh_textbox_js(<?= $nom_de_sortie ?>, <?= $par_defaut ?>)" <?php 
@@ -28,7 +28,7 @@ function adh_bool($nom_de_sortie, $par_defaut, $modifiable)
       $html_def = "unchecked";
     }
 ?>
-<span id="boolbutton"<?php 
+<span id="boolbutton_<?= nom_de_sortie ?>"<?php 
   if ($modifiable) 
     { 
 ?> onClick="adh_bool_js(<?= $nom_de_sortie ?>, <?= $html_def ?>)"<?php 

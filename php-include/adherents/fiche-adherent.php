@@ -22,26 +22,27 @@ function fiche_page($numcbde)
 	}
       else
         {
+	  $info = mysql_fetch_array($rep);
 	  /* 
 	     La suite gère juste l'affichage d'un tableau 
 	     avec des fonctions adh_ qui rendent le champs
 	     correspondant modifiable si et seulement si on
 	     a les droits (le troisième paramètre)
 	  */
-	  $passe_droit = su(ADHERENTS) | ($info['numcbde'] == $userinfo['numcbe']); 
+	  $passe_droit = su(ADHERENTS) | ($info['numcbde'] == $userinfo['numcbde']); 
 	  // Pour les champs pouvant être modifié par soi-même ou quelqu'un
 	  // qui a les droits ADHERENTS
 	  
-	  $cible = "modif_adherents.php";
+	  $cible = "chgadh.php";
 	  if ($info['preinscription'])
 	    $cible = "modif_inscription.php";
 	  // Pour que les inscriptions se passent dans la page inscription
 ?>
 <form action="<?= $cible ?>" method="post">
-<p>Fiche de l'adhérent <span style="font-vaviant: small-caps;"><?= adh_textbox("nom", $info['nom'], su(SUPREME)) ?> <?= adh_textbox("prenom", $info['prenom'], su(SUPREME)) ?></span></p>
+<p>Fiche de l'adh&eacute;rent <span style="font-vaviant: small-caps;"><?= adh_textbox("nom", $info['nom'], su(SUPREME)) ?> <?= adh_textbox("prenom", $info['prenom'], su(SUPREME)) ?></span></p>
 <table>
 <tr>
-  <td>Numéro de carte BDE:</td>
+  <td>Num&eacute;ro de carte BDE:</td>
   <td><?= $info['numcbde'] ?><input type="hidden" name="numcbde" value="<?= $info['numcbde'] ?>"/></td>
 </tr>
 <tr>
@@ -83,11 +84,11 @@ function fiche_page($numcbde)
   <td><?= adh_textbox("email", $info['email'], $passe_droit) ?></td>
 </tr>
 <tr>
-  <td>Num&egrave;ro de t&egtave;l&egrave;phone:</td>
+  <td>Num&eacute;ro de t&eacute;l&eacute;phone:</td>
   <td><?= adh_textbox("numero_tel", $info['numero_tel'], $passe_droit) ?></td>
 </tr>
 <tr>
-  <td>Probl&eacute;mes de sant&egrave;:</td>
+  <td>Probl&egrave;mes de sant&eacute;:</td>
   <td><?= adh_textbox("pb_sante", $info['pb_sante'], $passe_droit) ?></td>
 </tr>
 <?php

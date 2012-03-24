@@ -13,20 +13,23 @@ else if (su(ADHERENTS))
 ?>
   <!--Rechercher: <form><input type="text" onChange="recherche_adh()" /></form>-->
   <table>
-      <th><td>Carte</td><td>Nom</td><td>Pr&egrave;nom</td><td>Nom de note</td><td>Solde</td><td>Num&egrave;ro de t&egravel&egrave;phone</td></th>
+      <tr><th>Carte</th><th>Nom</th><th>Pr&eacute;nom</th><th>Nom de note</th><th>Solde</th><th>Num&eacute;ro de t&eacute;l&eacute;phone</th></tr>
 <?php
     $req = "SELECT numcbde, nom, prenom, pseudo, solde, numero_tel FROM adherents ORDER BY nom LIMIT 30";
     $rep = mysql_query($req, $sqlPointer);
     while ($info = mysql_fetch_array($rep))
       {
-	echo "<tr onClick=\"load_adh(".$info['numcbde'].")\">
-              <td>".$info['numcbde']."</td>
-              <td>".$info['nom']."</td>
-              <td>".$info['prenom']."</td>
-              <td>".$info['pseudo']."</td>
-              <td>".$info['solde']."</td>
-              <td>".$info['numero_tel']."</td>
-              </tr>";
+	echo "<span onClick=\"load_adh(".$info['numcbde'].")\">
+              <tr>
+                <td>".$info['numcbde']."</td>
+                <td>".$info['nom']."</td>
+                <td>".$info['prenom']."</td>
+                <td>".$info['pseudo']."</td>
+                <td>".$info['solde']."</td>
+                <td>".$info['numero_tel']."</td>
+              </tr>
+              </span>
+              ";
 	// avec load_adh($numcbde) une fonction javascript qui redirige
 	// juste vers adherents.php?numcbde=$numcbde
       }
@@ -57,6 +60,7 @@ else if (su(ADHERENTS))
     </table>
 <?php
   }
+bas_de_page($userinfo);
 ?>
 
 
