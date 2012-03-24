@@ -3,7 +3,7 @@
 include('../php-include/common-includes.php');
 include('../php-include/adherents/fiche-adherent.php');
 
-haut_de_page($userinfo, "Informations sur les adh&egrave;rents", array("inputs-adherents.js"));
+haut_de_page($userinfo, "Informations sur les adh&eacute;rents", array("inputs-adherents.js"));
 if(isset($_GET['numcbde']))
   {
     fiche_page($_GET['numcbde']);
@@ -19,7 +19,7 @@ else if (su(ADHERENTS))
     $rep = mysql_query($req, $sqlPointer);
     while ($info = mysql_fetch_array($rep))
       {
-	echo "<tr onClick=\"load_adh(".$info['numcbde']".)\">
+	echo "<tr onClick=\"load_adh(".$info['numcbde'].")\">
               <td>".$info['numcbde']."</td>
               <td>".$info['nom']."</td>
               <td>".$info['prenom']."</td>

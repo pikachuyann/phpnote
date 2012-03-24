@@ -26,28 +26,34 @@ else
 	    if (passwd_change($_POST['numcbde'], $mdp1))
 	      {
 		echo "<p>Changement de mot de passe effectu&egrave; avec succ&eacute;s</p>";
-		echo "<script type=\"text/javascript\">
-                      function redi()
-                      {
-                        window.location=adherents.php?numcbde=".$_POST['numcbde'].";
-                      }
-                      </script>
-                      <span onLoad=\"setTimeout('redi()', 5000)\"></span>";
-		/*
+				
 		if ($_POST['numcbde'] == $userinfo['numcbde'])
 		  {
 		    // modifier le header pour rediriger vers Mon Compte 
 		    // après 5 secondes
-		    
+		    echo "<script type=\"text/javascript\">
+                      function redi()
+                      {
+                        window.location=\"moncompte.php\";
+                      }
+                      </script>
+                      <span onLoad=\"setTimeout('redi()', 5000)\"></span>";
+
 		  }
 		else
 		  {
 		    // modifier le header pour rediriger vers 
 		    // adherents.php?numcbde=<?= $_POST['numcbde'] ?>
 		    // après 5 secondes
+		    echo "<script type=\"text/javascript\">
+                      function redi()
+                      {
+                        window.location=\"adherents.php?numcbde=".$_POST['numcbde']."\";
+                      }
+                      </script>
+                      <span onLoad=\"setTimeout('redi()', 5000)\"></span>";
+
 		  }
-		*/
-		// Fait dans le echo précédent
 	      }
 	    else
 	      {

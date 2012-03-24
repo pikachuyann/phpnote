@@ -1,6 +1,6 @@
 <?php
-include('../../php-include/common-includes.php');
-include('../../php-include/adherents/common.php');
+//include('../../php-include/common-includes.php');
+include('../php-include/adherents/common.php'); // Les fichiers sont inclus depuis www/ - yann
 
 // <!-- a_inclure_quelque_part = "<script type=\"text/javascript\" src=\"../php-include/adherents/common.js"; --> Done les js s'includent dans haut_de_page !
 
@@ -42,7 +42,7 @@ function fiche_page($numcbde)
 <table>
 <tr>
   <td>Numéro de carte BDE:</td>
-  <td><?= $info['numcbde'] ?></td>
+  <td><?= $info['numcbde'] ?><input type="hidden" name="numcbde" value="<?= $info['numcbde'] ?>"/></td>
 </tr>
 <tr>
   <td>Nom de note:</td>
@@ -101,7 +101,7 @@ function fiche_page($numcbde)
   <td><?= adh_bool("valide", $info['valide'], su(BUREAU)) ?></td>
 </tr>
 <tr>
-  <td></td>
+  <td><input type="hidden" name="preinscription" value="0"/></td>
   <td><input type="submit" value="Valider"/></td>
 </tr>
 <?php
@@ -110,8 +110,8 @@ function fiche_page($numcbde)
     {
 ?>
 <tr>
-  <td></td>
-  <td><input type="submit" value="Valider la pr&egrave;inscription"/></td>
+  <td><input type="hidden" name="preinscription" value="1"/></td>
+  <td><?php if (su(INSCRIPTION)) { ?><input type="submit" value="Valider la pr&egrave;inscription"/><?php } ?></td>
 </tr>
 <?php
     }

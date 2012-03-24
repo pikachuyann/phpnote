@@ -15,3 +15,8 @@ function load_adh(var num)
 {
     window.location = "adherents.php?numcbde="+num;
 }
+
+function load_myaccount()
+{
+    window.location = "moncompte.php";
+}
