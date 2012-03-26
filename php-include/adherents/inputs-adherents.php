@@ -9,7 +9,7 @@ function adh_textbox($nom_de_sortie, $par_defaut, $modifiable)
 ?> onClick="adh_textbox_js('<?= $nom_de_sortie ?>', '<?= $par_defaut ?>')" <?php 
     } 
 ?>>
-<?= $par_defaut ?>
+<?= $par_defaut ?>&nbsp;
 <input type="hidden" name="<?= $nom_de_sortie ?>" value="<?= $par_defaut ?>"/>
 </span>
 <?php
@@ -20,7 +20,7 @@ function adh_bool($nom_de_sortie, $par_defaut, $modifiable)
   if ($par_defaut) 
     {
       $real_name = "oui"; 
-      $html_def = "checked";
+      $html_def = "checked=\\'yes\\'";
     }
   else 
     {
