@@ -7,7 +7,7 @@ include('../php-include/adherents/common.php'); // Les fichiers sont inclus depu
 function fiche_page($numcbde)
 {
   global $sqlPointer,$_COOKIE,$userinfo;
-  if (!su(ADHERENTS) | $numcbde != $userinfo['numcbde'] | $userinfo['numcbde'] == -1)
+  if (!su(ADHERENTS) || $numcbde != $userinfo['numcbde'] || $userinfo['numcbde'] == -1)
     {
       login_page("adherents.php?numcbde=".$numcbde, msg_nondroits(ADHERENTS));
       // Penser au do_login() dans la page appellante
