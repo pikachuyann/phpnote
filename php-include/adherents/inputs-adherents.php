@@ -21,11 +21,13 @@ function adh_bool($nom_de_sortie, $par_defaut, $modifiable)
     {
       $real_name = "oui"; 
       $html_def = "checked=\\'yes\\'";
+      $html_def2 = "on";
     }
   else 
     {
       $real_name = "non";
       $html_def = "unchecked";
+      $html_def2 = "off";
     }
 ?>
 <span id="boolbutton_<?= $nom_de_sortie ?>"<?php 
@@ -35,7 +37,7 @@ function adh_bool($nom_de_sortie, $par_defaut, $modifiable)
     } 
 ?>>
 <?= $real_name ?>
-<input type="hidden" name="<?= $nom_de_sortie ?>" value="<?= $html_def ?>" />
+<input type="hidden" name="<?= $nom_de_sortie ?>" value="<?= $html_def2 ?>" />
 </span>
 <?php
 }

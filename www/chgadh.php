@@ -4,7 +4,7 @@ include('../php-include/common-includes.php');
 
 function check_to_int($c)
 {
-  if ($c == "checked")
+  if ($c == "checked" || $c == "on")
     return 1;
   return 0;
 }
@@ -26,7 +26,9 @@ if ($passe_droit)
       }
     else if (su(BUREAU))
       {
+	if (isset($_POST["valide"])) {
 	$req = $req.", valide=".check_to_int($_POST['valide']);
+	}
       }
     if (su(BUREAU))
       {
