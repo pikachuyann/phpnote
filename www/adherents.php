@@ -4,11 +4,13 @@ include('../php-include/common-includes.php');
 include('../php-include/adherents/fiche-adherent.php');
 
 haut_de_page($userinfo, "Informations sur les adh&eacute;rents", array("inputs-adherents.js"));
+
+global $userinfo;
 if(isset($_GET['numcbde']))
   {
     fiche_page($_GET['numcbde']);
   }
-else if (su(ADHERENTS))
+elseif (su(ADHERENTS))
   {
 ?>
   <!--Rechercher: <form><input type="text" onChange="recherche_adh()" /></form>-->
@@ -56,6 +58,8 @@ else if (su(ADHERENTS))
     // Résumé: Pour les inscriptions je splitte en une deuxième page
     //         identique ou pas ? 
     // Avis:   Je suis pas pour mais je sais pas trop faire autrement là
+    // Avis(pika): Pas pour non plus, on peut passer par un nouveau champ
+    // $_GET et bidouiller un peu, ça ira aussi
 ?>
     </table>
 <?php
