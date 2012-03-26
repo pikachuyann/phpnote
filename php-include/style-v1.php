@@ -5,7 +5,14 @@
 	   }
 */
 
+$HdPAffiche=0; $BdPAffiche=0;
+global $HdPAffiche;
+global $BdPAffiche;
+
 function haut_de_page($userinfo,$titre="", $js_list=array()) {
+		global $HdPAffiche;
+		if ($HdPAffiche==1) { return 42; }
+		else { $HdPAffiche=1; }
 		// Userinfo contiendra les données de l'utilisateur dont en aprticulier ses droits (ça pourrait être utile...)
 		if ($titre != "") { $titre = "$titre :: "; }
 		$messages=file("../php-include/messages");
@@ -42,6 +49,9 @@ function haut_de_page($userinfo,$titre="", $js_list=array()) {
 	}
 
 	function bas_de_page($userinfo) {
+		global $BdPAffiche;
+		if ($BdPAffiche==1) { return 42; }
+		else { $BdPAffiche=1; }
 		// Userinfo n'est pas forcément utile ?
 ?>
 <div class='bottom_credits'> phpNote Version &alpha;, cod&eacute;e par <i>Skippy</i> et <i>pika</i>, et parce que <i>ju&#x0109;jo</i> est un charg&eacute; de projet trollesque... </div>
