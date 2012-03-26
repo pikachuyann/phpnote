@@ -29,7 +29,7 @@ function fiche_page($numcbde)
 	     correspondant modifiable si et seulement si on
 	     a les droits (le troisième paramètre)
 	  */
-	  $passe_droit = su(ADHERENTS) | ($info['numcbde'] == $userinfo['numcbde']); 
+	  $passe_droit = su(ADHERENTS) || ($info['numcbde'] == $userinfo['numcbde']); 
 	  // Pour les champs pouvant être modifié par soi-même ou quelqu'un
 	  // qui a les droits ADHERENTS
 	  
