@@ -21,17 +21,14 @@ elseif (su(ADHERENTS))
     $rep = mysql_query($req, $sqlPointer);
     while ($info = mysql_fetch_array($rep))
       {
-	echo "<span onClick=\"load_adh(".$info['numcbde'].")\">
-              <tr>
+	echo "<tr onClick=\"load_adh(".$info["numcbde"].")\">
                 <td>".$info['numcbde']."</td>
                 <td>".$info['nom']."</td>
                 <td>".$info['prenom']."</td>
                 <td>".$info['pseudo']."</td>
                 <td>".$info['solde']."</td>
                 <td>".$info['numero_tel']."</td>
-              </tr>
-              </span>
-              ";
+              </tr>";
 	// avec load_adh($numcbde) une fonction javascript qui redirige
 	// juste vers adherents.php?numcbde=$numcbde
       }
