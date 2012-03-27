@@ -62,11 +62,7 @@ function fiche_page($numcbde)
 ?>
 <tr>
   <td></td>
-  <td><form action="passwd.php" method="post">
-      <input type="hidden" name="numcbde" value="<?= $numcbde ?>"/>
-      <input type="submit" value="Changer le mot de passe" />
-      </form>
-  </td>
+  <td><input type="submit" name="action" value="Changer le mot de passe" /></td>
 </tr>
 <?php
      }
@@ -103,7 +99,7 @@ function fiche_page($numcbde)
 </tr>
 <tr>
   <td><input type="hidden" name="preinscription" value="0"/></td>
-  <td><input type="submit" value="Valider"/></td>
+  <td><input type="submit" name="action" value="Valider"/></td>
 </tr>
 <?php
     }
@@ -112,14 +108,14 @@ function fiche_page($numcbde)
 ?>
 <tr>
   <td><input type="hidden" name="preinscription" value="1"/></td>
-  <td><?php if (su(INSCRIPTION)) { ?><input type="submit" value="Valider la pr&egrave;inscription"/><?php } ?></td>
+  <td><?php if (su(INSCRIPTION)) { ?><input type="submit" name="action" value="Valider la pr&egrave;inscription"/><?php } ?></td>
 </tr>
 <?php
     }
 ?>
 <tr>
   <td></td>
-  <td><input type="button" value="Retour"/></td>
+  <td><input type="button" name="action" value="Retour"/></td>
 </tr>
 </table>
 </form>
