@@ -1,5 +1,5 @@
 <?php
-  include('../common-includes.php');
+//include('../../php-include/common-includes.php');
 
 function passwd_page($numcbde)
   {
@@ -21,7 +21,7 @@ function passwd_page($numcbde)
 	  {
 ?>
 <p>Modifier le mot de passe de <span style="font-vaviant: small-caps;"><?= $info['nom'] ?> <?= $info['prenom'] ?></span></p>
-<form action="chgpass.php?>" method="post">
+<form action="chgpass.php" method="post">
 <input type="hidden" name="numcbde" value="<?= $numcbde ?>" />
 <table>
 <tr>

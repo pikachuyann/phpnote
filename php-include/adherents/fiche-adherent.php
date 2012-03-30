@@ -33,10 +33,12 @@ function fiche_page($numcbde)
 	  // Pour les champs pouvant être modifié par soi-même ou quelqu'un
 	  // qui a les droits ADHERENTS
 	  
-	  $cible = "chgadh.php";
-	  if ($info['preinscription'])
-	    $cible = "modif_inscription.php";
-	  // Pour que les inscriptions se passent dans la page inscription
+	  $cible = "dispatcher.php";
+
+	  // $cible = "chgadh.php";
+	  // if ($info['preinscription'])
+	  //   $cible = "modif_inscription.php";
+	  // Pour que les inscriptions se passent dans la page inscriptino
 ?>
 <form action="<?= $cible ?>" method="post">
 <p>Fiche de l'adh&eacute;rent <span style="font-vaviant: small-caps;"><?= adh_textbox("nom", $info['nom'], su(SUPREME)) ?> <?= adh_textbox("prenom", $info['prenom'], su(SUPREME)) ?></span></p>
@@ -115,7 +117,7 @@ function fiche_page($numcbde)
 ?>
 <tr>
   <td></td>
-  <td><input type="button" name="action" value="Retour"/></td>
+  <td><input type="submit" name="action" value="Annuler"/></td>
 </tr>
 </table>
 </form>

@@ -10,6 +10,17 @@ switch($_POST['action'])
   case "Valider la pr&eacute;inscription":
     include('chgadh.php');
     break;
+  case "Annuler":
+    include('../php-include/common-includes.php');
+    if ($_POST['numcbde'] == $userinfo['numcbde'])
+      {
+	header('Location: moncompte.php');
+      }
+    else
+      {
+	header('Location: adherents.php?numcbde='.$_POST['numcbde']);
+      }
+    break;
   default:
     include('moncompte.php');
   }

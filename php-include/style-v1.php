@@ -42,8 +42,9 @@ function haut_de_page($userinfo,$titre="", $js_list=array()) {
 	<a href='/'>Index</a>
 	<?php if ($userinfo["numcbde"]==-1) {	?><a href='/preinscription.php'>Pr&eacute;inscription</a><?php	} ?>
 	<?php if (droits_suffisants(INTRANET,$droits)) { ?><a href='delog.php'>Se d&eacute;connecter</a><?php	} ?>
-        <?php if (su(INTRANET)) { ?><a href='moncompte.php'>Mon compte</a><?php	} ?>
+        <?php if (su(INTRANET)) { ?><a href='moncompte.php'>Mon&nbsp;compte</a><?php	} ?>
         <?php if (su(ADHERENTS)) { ?><a href='adherents.php'>Adh&eacute;rents</a><?php	} ?>
+	<?php if (su(BOUTONS)) { ?><a href='boutons.php'>Gestion&nbsp;des&nbsp;boutons</a><?php } ?>
 </div></div>
 <?php
 	}
