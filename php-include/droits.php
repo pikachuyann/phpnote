@@ -1,7 +1,8 @@
 <?php
 
 define("PUBLIC", 0);
-$liste_droits = array("INTRANET", "NOTE", "ADHERENTS", "ACTIVITES", "DROIT_D_ETRE_TOTO", "BUREAU", "INSCRIPTION");
+$liste_droits = array("INTRANET", "NOTE", "ADHERENTS", "ACTIVITES", "DROIT_D_ETRE_TOTO", "BUREAU", "INSCRIPTION", "BOUTONS");
+// Dans BOUTONS : on range la gestion des Catégories de boutons et des boutons réels
 
 $p = 1;
 $s = 0;
