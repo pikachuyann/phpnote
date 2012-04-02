@@ -4,6 +4,10 @@ include('../php-include/common-includes.php');
 include('../php-include/adherents/passwd-functions.php');
 
 haut_de_page($userinfo, "Changer un mot de passe");
+if (isset($_POST['user']) && isset($_POST['pwd']))
+  {
+    do_login($_POST);
+  }
 if (!isset($_POST['numcbde']))
   {
     echo "<p>Aucun mot de passe à changer</p>";

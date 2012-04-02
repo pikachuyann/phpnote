@@ -1,4 +1,38 @@
 <?php
+	/* Gestion des identifications */
+if (isset($_POST['user']) && isset($_POST['pwd']))
+  {
+    do_login($_POST);
+    if (isset($_COOKIE['post_keys']))
+      $_POST = load('post');
+    if (isset($_COOKIE['get_keys']))
+      $_GET = load('get');
+    setcookie('post', "", time() - 1);
+    setcookie('get', "", time() - 1);
+  }
+else
+  {
+    if (!isset($_COOKIE["sid"])) {}
+    else {
+      $sid=mysql_real_escape_string($_COOKIE["sid"]);
+      /* Il faudrait trouver un meilleur moyen pour traiter l'expiration des SID */
+      $reply=mysql_query("SELECT * FROM sid, adherents WHERE sid.sid='$sid' AND sid.expiration>NOW() AND sid.numcbde=adherents.numcbde");
+      while ($answer=mysql_fetch_assoc($reply)) { // Le sid étant unique
+	// On a plus ou moins l'userinfo dans la réponse...
+	$upd_req="";
+	if (strtotime($answer["expircomplet"]) < $time) {
+	  $upd_req=", expircomplet='".date("Y-m-d H:i:s", time()+TEMPS_EXPIRCOMPLET)."'";
+	}
+	mysql_query("UPDATE sid SET expiration='".date("Y-m-d H:i:s", time()+TEMPS_EXPIRE)."'$upd_req WHERE sid='$sid'");
+	$userinfo=$answer;
+      }
+    }	
+
+    if (!isset($userinfo)) {
+      $userinfo["numcbde"]=-1;
+      $userinfo["droits"]=0;
+    }
+  }
 
 function gen_sid()
 {
@@ -6,7 +40,7 @@ function gen_sid()
   $chaine = "azertyuiopqsdfghjklmwxcvbn1234567890";
     // Non mon clavier n'est pas du tout un azerty !
   $res = "";
-  for ($i = 0; $i < 32; $i++)
+  for ($i = 0; $i < 42; $i++)
     {
       $res .= $chaine[rand(0, 35)];
     }
@@ -33,6 +67,9 @@ function do_login($post)
 	  $t = mysql_fetch_array($reponse);
 	}
       while($t['c'] != 0);
+      // On supprime les anciennes sessions
+      $req = "DELETE FROM sid WHERE numcbde=".$traiter['numcbde'].";";
+      // On commence une nouvelle session
       $req = "INSERT INTO sid (sid, expircomplet, expiration, numcbde)
               VALUES ('".$s."', '".date("Y-m-d H:i:s", time()+TEMPS_EXPIRCOMPLET)."', '".date("Y-m-d H:i:s", time()+TEMPS_EXPIRE)."', ".$traiter['numcbde'].");";
       mysql_query($req, $sqlPointer);
@@ -47,7 +84,10 @@ function do_login($post)
     { return 1; } 
 }
 
-function login_page($source, $msg)	{
+function login_page($source, $msg)	
+{
+  save('post', $_POST);
+  save('get', $_GET);
   $userinfo["numcbde"]=-1;
   haut_de_page($userinfo,"Identification n&eacute;cessaire");
 ?>
@@ -67,7 +107,8 @@ function login_page($source, $msg)	{
 </table>
 </form>
 
-<?= bas_de_page(NULL) ?>
 <?php
+  bas_de_page(NULL);
+  exit();
 }
 ?>

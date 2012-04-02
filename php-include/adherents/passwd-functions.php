@@ -13,9 +13,9 @@ function passwd_page($numcbde)
     else
       {
 	$info = mysql_fetch_array($rep);
-	if (!su(ADHERENTS) | $numcbde != $userinfo['numcbde'] | $userinfo['numcbde'] == -1 | $info['droits'] > $userinfo['droits'])
+	if (!su(ADHERENTS) || $numcbde != $userinfo['numcbde'] || $userinfo['numcbde'] == -1 || $info['droits'] > $userinfo['droits'])
 	  {
-	    login_page("", "Vous n'avez pas assez de droits");
+	    login_page("chgpass.php", "Vous n'avez pas assez de droits");
 	  }
 	else
 	  {
