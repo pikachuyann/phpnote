@@ -25,7 +25,7 @@
 				}
 				else {
 					$requete="INSERT INTO adherents(nom,prenom,sexe,section,email,numero_tel,motdepasse,preinscription) "
-					." VALUES('".mysql_real_escape_string($nom)."','".mysql_real_escape_string($prenom)."','$sexe','".mysql_real_escape_string($sect)."','".mysql_real_escape_string($email)."','".mysql_real_escape_string($tel)."','".mysql_real_escape_string($_POST["mdpA"])."',1)";
+					." VALUES('".mysql_real_escape_string($nom)."','".mysql_real_escape_string($prenom)."','$sexe','".mysql_real_escape_string($sect)."','".mysql_real_escape_string($email)."','".mysql_real_escape_string($tel)."','".mysql_real_escape_string(mash($_POST["mdpA"]))."',1)";
 					mysql_query($requete);
 					$errorMsg="<strong>Votre pr&eacute;inscription a &eacute;t&eacute; effectu&eacute;e avec succ&egrave;s !</strong>";
 					// Let's get the administrative thing working
