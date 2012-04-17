@@ -45,6 +45,11 @@ BODY {
 	font-size:12px;
 	text-align:center;
 }
+.bottom_credits A {
+	text-decoration:none;
+	color:#3d496f;
+}
+.bottom_credits A:hover { font-weight:bold; }
 
 .formulaire_preinscription TH {
 	text-align:right;
