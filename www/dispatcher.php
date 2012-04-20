@@ -7,7 +7,7 @@ switch($_POST['action'])
     include('chgpass.php');
     break;
   case "Valider":
-  case "Valider la pr&eacute;inscription":
+  case "Valider la préinscription":
     include('chgadh.php');
     break;
   case "Annuler":

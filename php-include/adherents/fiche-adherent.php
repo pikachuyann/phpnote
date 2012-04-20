@@ -110,7 +110,7 @@ function fiche_page($numcbde)
 ?>
 <tr>
   <td><input type="hidden" name="preinscription" value="1"/></td>
-  <td><?php if (su(INSCRIPTION)) { ?><input type="submit" name="action" value="Valider la pr&eacute;inscription"/><?php } ?></td>
+  <td><?php if (su(INSCRIPTION)) { ?><input type="submit" name="action" value="Valider la préinscription"/><?php } ?></td>
 </tr>
 <?php
     }
