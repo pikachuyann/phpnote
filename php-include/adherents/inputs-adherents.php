@@ -21,7 +21,6 @@ function adh_bool($nom_de_sortie, $par_defaut, $modifiable)
     {
       $real_name = "oui"; 
       $html_def = "checked";
-// =\\'checked\\'";
       $html_def2 = "on";
     }
   else 

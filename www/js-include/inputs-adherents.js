@@ -3,7 +3,7 @@ function adh_bool_js(sortie, defaut)
 {
     if (document.getElementById("boolbutton_"+sortie).style.display != 'inline') {
     document.getElementById("boolbutton_"+sortie).style.display='inline';
-    document.getElementById("boolbutton_"+sortie).innerHTML = "<input type=\"checkbox\" name=\""+sortie+"\" \"+defaut+\"/>";
+    document.getElementById("boolbutton_"+sortie).innerHTML = "<input type=\"checkbox\" name=\""+sortie+"\" "+defaut+"/>";
     }
 }
 

@@ -96,7 +96,7 @@ function fiche_page($numcbde)
     {
 ?>
 <tr>
-  <td>Valide:</td>
+  <td><input type='hidden' name='send_valide' value='Exists'>Valide:</td>
   <td><?= adh_bool("valide", $info['valide'], su(BUREAU)) ?></td>
 </tr>
 <tr>

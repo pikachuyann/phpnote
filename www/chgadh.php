@@ -9,7 +9,7 @@ function check_to_int($c)
   return 0;
 }
 
-$passe_droit = su(ADHERENTS) | ($userinfo['numcbde'] == $_POST['numcbde']);
+$passe_droit = su(ADHERENTS) || ($userinfo['numcbde'] == $_POST['numcbde']);
 
 $req = "UPDATE adherents SET ";
 if ($passe_droit)
@@ -26,8 +26,14 @@ if ($passe_droit)
       }
     else if (su(BUREAU))
       {
-	if (isset($_POST["valide"])) {
+	if (isset($_POST["valide"]) || isset($_POST['send_valide'])) {
+//  echo $_POST["valide"]; exit();
+        if (isset($_POST["valide"])) {
 	$req = $req.", valide=".check_to_int($_POST['valide']);
+        }
+        else {
+          $req = $req.", valide=0";
+        }
 	}
       }
     if (su(BUREAU))
