@@ -61,3 +61,18 @@ BODY {
 	font-size:14px;
 	width:250px;
 }
+
+.menu_interieur {
+	text-align:center;
+	border:solid 1px #3d496f;
+	margin-left:250px;
+	width:300px;
+	min-width:300px;
+}
+.menu_interieur A {
+	text-decoration:none;
+	color:#3d496f;
+}
+.menu_interieur A:hover {
+	font-weight:bold;
+}
