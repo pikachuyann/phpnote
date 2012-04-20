@@ -55,7 +55,7 @@ function haut_de_page($userinfo,$titre="", $js_list=array()) {
 		else { $BdPAffiche=1; }
 		// Userinfo n'est pas forcément utile ?
 ?>
-<div class='bottom_credits'> phpNote <a href='/deadlines.php'>Version &alpha;</a>, cod&eacute;e par <i>Skippy</i> et <i>pika</i>, et parce que <i>ju&#x0109;jo</i> est un charg&eacute; de projet <a href='/ListeQuotes.php'>troll</a>esque... </div>
+<div class='bottom_credits'> phpNote <a href='/deadlines.php'>Version &beta; 0.1</a>, cod&eacute;e par <i>Skippy</i> et <i>pika</i>, et parce que <i>ju&#x0109;jo</i> est un charg&eacute; de projet <a href='/ListeQuotes.php'>troll</a>esque... </div>
 </body>
 </html>
 <?php
