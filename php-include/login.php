@@ -32,7 +32,6 @@ else
       $userinfo["droits"]=0;
     }
     elseif (!$userinfo["valide"]) {
-      $userinfo["numcbde"]=-1;
       $userinfo["droits"]=0;
     }
   }

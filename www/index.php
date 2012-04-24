@@ -1,7 +1,7 @@
 <?php
 include("../php-include/common-includes.php");
 
-if ($userinfo[$numcbde] == -1) {	
+if ($userinfo["numcbde"] == -1) {	
   login_page("index.php","Bienvenue sur <strong>phpNote</strong>, veuillez vous identifier pour acc&eacute;der aux diff&eacute;rentes pages de gestion de la note. Si vous ne disposez pas de compte, vous pouvez vous pr&eacute;inscrire.");
 }
 else {
