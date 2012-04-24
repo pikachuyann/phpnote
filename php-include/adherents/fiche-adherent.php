@@ -39,9 +39,38 @@ function fiche_page($numcbde)
 	  // if ($info['preinscription'])
 	  //   $cible = "modif_inscription.php";
 	  // Pour que les inscriptions se passent dans la page inscriptino
+
+
+	  $type="profil";
+	  if (isset($_GET["type"])) {
+	    if ($_GET["type"]=="droits") { $type="droits"; }
+}
 ?>
-<form action="<?= $cible ?>" method="post">
-<p>Fiche de l'adh&eacute;rent <span style="font-vaviant: small-caps;"><?= adh_textbox("nom", $info['nom'], su(SUPREME)) ?> <?= adh_textbox("prenom", $info['prenom'], su(SUPREME)) ?></span></p>
+<form action="<?= $cible ?>" class="formulaire_preinscription" method="post">
+
+
+<div class='titre_de_page'>Fiche de l'adh&eacute;rent <?= adh_textbox("nom", $info['nom'], su(SUPREME)) ?> <?= adh_textbox("prenom", $info['prenom'], su(SUPREME)) ?></div> <?php //' ?> 
+<div class='menu_interieur'>
+<?php if ($type=="profil") { ?><strong>Profil</strong><?php } else { ?><a href='?numcbde=<?= $numcbde ?>&type=profil'>Profil</a><?php } ?>
+ -
+<?php if ($type=="droits") { ?><strong>Droits</strong><?php } else { ?><a href='?numcbde=<?= $numcbde ?>&type=droits'>Droits</a><?php } ?>
+ - 
+<?php if ((su(ADHERENTS) && $info['droits'] <= $userinfo['droits']) || ($numcbde == $userinfo['numcbde']))
+   {
+     // On peut modifier son mot de passe, sinon il faut plus de droits que
+       // la personne à qui tu changes le mot de passe 
+       // (sinon autant donner les droits SUPREME à tout le monde)
+?><a href='chgpass.php?numcbde=<?= $numcbde ?>'>Changer le mot de passe</a>
+<?php } ?>
+</div>
+
+<?php
+	if ($type=="droits") {
+	  echo table_droits($info['droits']);
+	}
+	else 
+	  {
+?>
 <table>
 <tr>
   <td>Num&eacute;ro de carte BDE:</td>
@@ -49,45 +78,31 @@ function fiche_page($numcbde)
 </tr>
 <tr>
   <td>Nom de note:</td>
-  <td><?= adh_textbox("pseudo", $info['pseudo'], $passe_droit) ?></td>
+  <?= adh_td_textbox("pseudo", $info['pseudo'], $passe_droit) ?>
 </tr>
 <tr>
   <td>Solde:</td>
   <td><?= $info['solde'] ?></td>
 </tr>
-<?php 
-   if ((su(ADHERENTS) & $info['droits'] <= $userinfo['droits']) | ($numcbde == $userinfo['numcbde'])) 
-     {
-       // On peut modifier son mot de passe, sinon il faut plus de droits que
-       // la personne à qui tu changes le mot de passe 
-       // (sinon autant donner les droits SUPREME à tout le monde)
-?>
-<tr>
-  <td></td>
-  <td><input type="submit" name="action" value="Changer le mot de passe" /></td>
-</tr>
-<?php
-     }
-?>
 <tr>
   <td>Section:</td>
-  <td><?= adh_textbox("section", $info['section'], $passe_droit) ?></td>
+  <?= adh_td_textbox("section", $info['section'], $passe_droit) ?>
 </tr>
 <tr>
   <td>Fonctions:</td>
-  <td><?= adh_textbox("fonctions", $info['fonctions'], su(BUREAU)) ?></td>
+  <?= adh_td_textbox("fonctions", $info['fonctions'], su(BUREAU)) ?>
 </tr>
 <tr>
   <td>email:</td>
-  <td><?= adh_textbox("email", $info['email'], $passe_droit) ?></td>
+  <?= adh_td_textbox("email", $info['email'], $passe_droit) ?>
 </tr>
 <tr>
   <td>Num&eacute;ro de t&eacute;l&eacute;phone:</td>
-  <td><?= adh_textbox("numero_tel", $info['numero_tel'], $passe_droit) ?></td>
+  <?= adh_td_textbox("numero_tel", $info['numero_tel'], $passe_droit) ?>
 </tr>
 <tr>
   <td>Probl&egrave;mes de sant&eacute;:</td>
-  <td><?= adh_textbox("pb_sante", $info['pb_sante'], $passe_droit) ?></td>
+  <?= adh_td_textbox("pb_sante", $info['pb_sante'], $passe_droit) ?>
 </tr>
 <?php
   // Pour utiliser la même fonction pour afficher deux choses différentes
@@ -122,6 +137,7 @@ function fiche_page($numcbde)
 </table>
 </form>
 <?php
+   } // Fermeture de type == "profil"
 } // Fermeture de si on trouve l'adhérent
 } // Fermeture de si on a les droits
 } // Fermeture de la définition de la fonction

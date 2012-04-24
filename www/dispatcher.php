@@ -3,9 +3,6 @@
 // nb: penser à changer la cible de fiche_adherent.php
 switch($_POST['action'])
   {
-  case "Changer le mot de passe": 
-    include('chgpass.php');
-    break;
   case "Valider":
   case "Valider la préinscription":
     include('chgadh.php');

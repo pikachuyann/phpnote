@@ -68,6 +68,7 @@ BODY {
 	margin-left:250px;
 	width:300px;
 	min-width:300px;
+	font-variant:small-caps;
 }
 .menu_interieur A {
 	text-decoration:none;

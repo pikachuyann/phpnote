@@ -39,4 +39,28 @@ function msg_nondroits($droit)
   return($msg."Si vous poss&eacute;dez ces droits, reconnectez-vous !<br/>\n");
 }
 
+function table_droits($droit)
+{
+  global $liste_droits, $s;
+  $rep = "<table>";
+  $p = 1;
+  for ($i = 0; $i < count($liste_droits); $i++)
+    {
+      $rep .= "<tr><td>".$liste_droits[$i].": </td><td>";
+      if (($droit && $p) == $p) {
+	$rep .= "oui</td></tr>";
+      } else {
+	$rep .= "non</td></tr>";
+      }
+      $p *= 2;
+    }
+  $rep .= "<tr><td>SUPREME</td><td>";
+  if (($droit && $s) == $s) {
+    $rep .= "oui</td></tr>";
+  } else {
+    $rep .= "non</td></tr>";
+  }
+    
+  return($rep."</table>");
+}
 ?>

@@ -13,7 +13,7 @@ function passwd_page($numcbde)
     else
       {
 	$info = mysql_fetch_array($rep);
-	if (!su(ADHERENTS) || $numcbde != $userinfo['numcbde'] || $userinfo['numcbde'] == -1 || $info['droits'] > $userinfo['droits'])
+	if ((!su(ADHERENTS) && $numcbde != $userinfo['numcbde']) || $userinfo['numcbde'] == -1 || $info['droits'] > $userinfo['droits'])
 	  {
 	    login_page("chgpass.php", "Vous n'avez pas assez de droits");
 	  }
@@ -21,8 +21,7 @@ function passwd_page($numcbde)
 	  {
 ?>
 <p>Modifier le mot de passe de <span style="font-vaviant: small-caps;"><?= $info['nom'] ?> <?= $info['prenom'] ?></span></p>
-<form action="chgpass.php" method="post">
-<input type="hidden" name="numcbde" value="<?= $numcbde ?>" />
+<form action="chgpass.php?numcbde=<?= $numcbde ?>" method="post">
 <table>
 <tr>
   <td>Nouveau mot de passe:</td>
@@ -55,7 +54,7 @@ function passwd_change($numcbde, $newpasswd)
     else
       {
 	$info = mysql_fetch_array($rep);
-	if (!su(ADHERENTS) | $numcbde != $userinfo['numcbde'] | $userinfo['numcbde'] == -1 | $info['droits'] > $userinfo['droits'])
+	if ((!su(ADHERENTS) && $numcbde != $userinfo['numcbde']) || $userinfo['numcbde'] == -1 || $info['droits'] > $userinfo['droits'])
 	  {
 	    login_page("", "Vous n'avez pas assez de droits");
 	  }

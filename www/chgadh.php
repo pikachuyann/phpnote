@@ -22,7 +22,7 @@ if ($passe_droit)
 
     if ($_POST['preinscription']=="1" && su(INSCRIPTION))
       {
-	$req = $req.", valide=1, preinscription=0";
+	$req = $req.", valide=1, preinscription=0, droits=1";
       }
     else if (su(BUREAU))
       {

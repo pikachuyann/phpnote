@@ -8,6 +8,7 @@ haut_de_page($userinfo, "Informations sur les adh&eacute;rents", array("inputs-a
 global $userinfo;
 if(isset($_GET['numcbde']))
   {
+    // La gestion des droits est assurée par la fonction en interne
     fiche_page($_GET['numcbde']);
   }
 elseif (su(ADHERENTS))
