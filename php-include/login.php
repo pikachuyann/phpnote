@@ -30,9 +30,11 @@ else
     if (!isset($userinfo)) {
       $userinfo["numcbde"]=-1;
       $userinfo["droits"]=0;
+      $userinfo["supreme"]=false;
     }
     elseif (!$userinfo["valide"]) {
       $userinfo["droits"]=0;
+      $userinfo["supreme"]=false;
     }
   }
 

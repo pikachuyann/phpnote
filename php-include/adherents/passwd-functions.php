@@ -13,7 +13,8 @@ function passwd_page($numcbde)
     else
       {
 	$info = mysql_fetch_array($rep);
-	if ((!su(ADHERENTS) && $numcbde != $userinfo['numcbde']) || $userinfo['numcbde'] == -1 || !droits_suffisants($info['droits'], $userinfo['droits']))
+	// passwd_condition est definie dans droits.php
+	if (!passwd_condition($info))
 	  {
 	    login_page("chgpass.php?numcbde=".$numcbde, "Vous n'avez pas assez de droits");
 	  }
@@ -54,7 +55,7 @@ function passwd_change($numcbde, $newpasswd)
     else
       {
 	$info = mysql_fetch_array($rep);
-	if ((!su(ADHERENTS) && $numcbde != $userinfo['numcbde']) || $userinfo['numcbde'] == -1 || !droits_suffisants($info['droits'], $userinfo['droits']))
+	if (!passwd_condition($info))
 	  {
 	    login_page("chgpass.php?numcbde=".$numcbde, "Vous n'avez pas assez de droits");
 	  }

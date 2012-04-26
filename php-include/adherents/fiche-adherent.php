@@ -55,13 +55,9 @@ function fiche_page($numcbde)
 <?php if ($type=="profil") { ?><strong>Profil</strong><?php } else { ?><a href='?numcbde=<?= $numcbde ?>&type=profil'>Profil</a><?php } ?>
  -
 <?php if ($type=="droits") { ?><strong>Droits</strong><?php } else { ?><a href='?numcbde=<?= $numcbde ?>&type=droits'>Droits</a><?php } ?>
- - 
-   <?php if ((su(ADHERENTS) && su($info['droits'])) || ($numcbde == $userinfo['numcbde']))
+<?php if (passwd_condition($info))
    {
-     // On peut modifier son mot de passe, sinon il faut plus de droits que
-       // la personne à qui tu changes le mot de passe 
-       // (sinon autant donner les droits SUPREME à tout le monde)
-?><a href='chgpass.php?numcbde=<?= $numcbde ?>'>Changer le mot de passe</a>
+?> - <a href='chgpass.php?numcbde=<?= $numcbde ?>'>Changer le mot de passe</a>
 <?php } ?>
 </div>
 
@@ -81,7 +77,7 @@ function fiche_page($numcbde)
                $p *= 2;
               }
 ?>
-<tr><td>SUPREME</td><td></td><td><?php if (droits_suffisants(SUPREME, $info['surdroits'])) {echo "oui";} else {echo "non";} ?></td></tr>
+<tr><td>SUPREME</td><td></td><td><?php if ($info["supreme"]) {echo "oui";} else {echo "non";} ?></td></tr>
 <tr><td></td><td></td><td><input type="submit" value="Valider"/></td></tr>
 </table>
 </form>

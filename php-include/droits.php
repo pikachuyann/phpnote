@@ -12,7 +12,7 @@ for ($i = 0; $i < count($liste_droits); $i++)
     $s += $p;
     $p *= 2;
   }
-define("SUPREME", $s);
+define("SUPREME", $s*2+1);
 
 function droits_suffisants($droits_requis, $droits_utilisateur)
 {
@@ -23,14 +23,16 @@ function su($droits)
 {
   global $userinfo;
   if ($droits == SUPREME) 
-    return droits_suffisants($droits, $userinfo['surdroits']);
-  return droits_suffisants($droits, $userinfo['droits']);	 
+	return $userinfo["supreme"];
+  return droits_suffisants($droits, $userinfo["droits"]);	 
 }
 
 function sursu($droits)
 {
   global $userinfo;
-  return droits_suffisants($droits, $userinfo['surdroits']);
+  if ($droits == SUPREME)
+	return $userinfo["supreme"];
+  return droits_suffisants($droits, $userinfo["surdroits"]);
 }
 
 function msg_nondroits($droit)
@@ -47,4 +49,25 @@ function msg_nondroits($droit)
   return($msg."Si vous poss&eacute;dez ces droits, reconnectez-vous !<br/>\n");
 }
 
+function passwd_condition($info)
+{
+	global $userinfo;
+	// On a le droit de modifier son mot de passe
+	if ($userinfo == $info)
+		return(true);
+	// On a le droit de modifier le mot de passe d'un autre si on est supreme
+	if ($userinfo["supreme"])
+		return(true);
+	// sinon
+	// On peut pas modifier le mot de passe d'un supreme si on ne l'ai pas
+	if ($info["supreme"])
+		return(false);
+	// Il faut au moins le droit ADHERENT
+	if (!su(ADHERENTS))
+		return(false);
+	// Il faut avoir au moins les droits qu'il a
+	//
+		return(su((int)($info["droits"])) 
+			&& sursu((int)($info["surdroits"])));
+}
 ?>
