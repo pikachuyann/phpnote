@@ -33,6 +33,27 @@ elseif ($passe_droit)
                  numero_tel='".protect($_POST['numero_tel'])."', 
                  pb_sante='".protect($_POST['pb_sante'])."'";
 
+	if ($_POST["pseudo"]) {
+		$ps_reqA=mysql_query("SELECT * FROM adherents WHERE pseudo='".protect(trim($_POST["pseudo"]))."'");
+		$ps_repA=mysql_fetch_array($ps_reqA);
+		if ($ps_repA["numcbde"] == $_POST["numcbde"]) {
+			// Pas de changement requis
+		}
+		elseif ($ps_repA["pseudo"]) {
+			// Pas de changement possible
+		}
+		else {
+			// Coucou
+			$date=date("Y-m-d H:i:s"); $fin_affichage=date("Y-m-d H:i:s",time()+FIN_AFFICHAGE);
+			echo "Changing pseudonyme\n";
+			echo "New : ".protect(trim($_POST["pseudo"]));
+			mysql_query("UPDATE historique_pseudo SET fin='$date', fin_affichage='$fin_affichage' WHERE numcbde=".protect($_POST["numcbde"])." ORDER BY debut DESC");
+			mysql_query("UPDATE historique_pseudo SET fin_affichage='$date' WHERE pseudo='".protect(trim($_POST["pseudo"]))."' ORDER BY debut DESC");
+			mysql_query("INSERT INTO historique_pseudo(numcbde,pseudo) VALUES('".protect($_POST["numcbde"])."','".protect(trim($_POST["pseudo"]))."')");
+			$req = $req.",pseudo='".protect($_POST["pseudo"])."'";
+		}
+	}
+
     if ($_POST['preinscription']=="1" && su(INSCRIPTION))
       {
 	$req = $req.", valide=1, preinscription=0, droits=1";
