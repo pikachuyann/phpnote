@@ -19,6 +19,7 @@ function haut_de_page($userinfo,$titre="", $js_list=array()) {
 		if (isset($userinfo["droits"])) { $droits=$userinfo["droits"]; }
 		else { $droits=0; }
 		$up_message=$messages[rand(0,(count($messages)-1))];
+		if (file_exists("../php-include/alert-message")) { $msg=file("../php-include/alert-message"); $up_message=$msg[0]; }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">

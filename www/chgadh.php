@@ -26,8 +26,9 @@ if ($_POST['action'] == "Annuler")
   }
 elseif ($passe_droit)
   {
-    $req = $req."pseudo='".protect($_POST['pseudo'])."',
-                 section='".protect($_POST['section'])."', 
+
+   // pseudo='".protect($_POST['pseudo'])."'
+    $req = $req."section='".protect($_POST['section'])."', 
                  email='".protect($_POST['email'])."', 
                  numero_tel='".protect($_POST['numero_tel'])."', 
                  pb_sante='".protect($_POST['pb_sante'])."'";
