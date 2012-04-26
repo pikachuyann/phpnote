@@ -30,6 +30,7 @@ if (isset($_GET["type"])) {
 	if ($type=="categ") {
 		/* Gestion des diverses catégories */
 ?>
+
 <?php
 	}
 	else {

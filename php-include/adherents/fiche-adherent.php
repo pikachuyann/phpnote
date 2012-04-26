@@ -6,11 +6,10 @@ include('../php-include/adherents/common.php'); // Les fichiers sont inclus depu
 
 function fiche_page($numcbde)
 {
-  global $sqlPointer,$_COOKIE,$userinfo;
+  global $sqlPointer,$_COOKIE,$userinfo,$liste_droits;
   if ((!su(ADHERENTS) && $numcbde != $userinfo['numcbde']) || $userinfo['numcbde'] == -1)
     {
       login_page("adherents.php?numcbde=".$numcbde, msg_nondroits(ADHERENTS));
-      // Penser au do_login() dans la page appellante
     }
   else
     {
@@ -33,9 +32,9 @@ function fiche_page($numcbde)
 	  // Pour les champs pouvant être modifié par soi-même ou quelqu'un
 	  // qui a les droits ADHERENTS
 	  
-	  $cible = "dispatcher.php";
+	  // $cible = "dispatcher.php";
 
-	  // $cible = "chgadh.php";
+	  $cible = "chgadh.php";
 	  // if ($info['preinscription'])
 	  //   $cible = "modif_inscription.php";
 	  // Pour que les inscriptions se passent dans la page inscriptino
@@ -43,19 +42,21 @@ function fiche_page($numcbde)
 
 	  $type="profil";
 	  if (isset($_GET["type"])) {
-	    if ($_GET["type"]=="droits") { $type="droits"; }
+	    if ($_GET["type"]=="droits") { 
+	      $type="droits"; $cible="chgdroits.php";
+	    }
 }
 ?>
 <form action="<?= $cible ?>" class="formulaire_preinscription" method="post">
 
 
-<div class='titre_de_page'>Fiche de l'adh&eacute;rent <?= adh_textbox("nom", $info['nom'], su(SUPREME)) ?> <?= adh_textbox("prenom", $info['prenom'], su(SUPREME)) ?></div> <?php //' ?> 
+<div class='titre_de_page'>Fiche de l'adh&eacute;rent <?= adh_textbox("nom", $info['nom'], ($type=="profil") && su(SUPREME)) ?> <?= adh_textbox("prenom", $info['prenom'], ($type=="profil") && su(SUPREME)) ?></div> <?php //' ?> 
 <div class='menu_interieur'>
 <?php if ($type=="profil") { ?><strong>Profil</strong><?php } else { ?><a href='?numcbde=<?= $numcbde ?>&type=profil'>Profil</a><?php } ?>
  -
 <?php if ($type=="droits") { ?><strong>Droits</strong><?php } else { ?><a href='?numcbde=<?= $numcbde ?>&type=droits'>Droits</a><?php } ?>
  - 
-<?php if ((su(ADHERENTS) && $info['droits'] <= $userinfo['droits']) || ($numcbde == $userinfo['numcbde']))
+   <?php if ((su(ADHERENTS) && su($info['droits'])) || ($numcbde == $userinfo['numcbde']))
    {
      // On peut modifier son mot de passe, sinon il faut plus de droits que
        // la personne à qui tu changes le mot de passe 
@@ -66,7 +67,25 @@ function fiche_page($numcbde)
 
 <?php
 	if ($type=="droits") {
-	  echo table_droits($info['droits']);
+?>
+<input type="hidden" name="numcbde" value="<?= $numcbde ?>" />
+<table>
+<tr><th>Nom</th><th>Droit</th><th>Surdroit</th></tr>
+<?php
+	    $p = 1;
+	    for($i = 0; $i < count($liste_droits); $i++)
+	      {
+?>
+<tr><td><?= $liste_droits[$i] ?></td><td><?= adh_bool("d".$p, droits_suffisants($p, $info['droits']), sursu($p)) ?></td><td><?= adh_bool("s".$p, droits_suffisants($p, $info['surdroits']), su(SUPREME)) ?></td></tr>
+<?php
+               $p *= 2;
+              }
+?>
+<tr><td>SUPREME</td><td></td><td><?php if (droits_suffisants(SUPREME, $info['surdroits'])) {echo "oui";} else {echo "non";} ?></td></tr>
+<tr><td></td><td></td><td><input type="submit" value="Valider"/></td></tr>
+</table>
+</form>
+<?php
 	}
 	else 
 	  {

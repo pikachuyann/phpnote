@@ -9,10 +9,22 @@ function check_to_int($c)
   return 0;
 }
 
-$passe_droit = su(ADHERENTS) || ($userinfo['numcbde'] == $_POST['numcbde']);
+$passe_droit = (su(ADHERENTS) || ($userinfo['numcbde'] == $_POST['numcbde']));
 
 $req = "UPDATE adherents SET ";
-if ($passe_droit)
+
+if ($_POST['action'] == "Annuler")
+  {
+    if ($userinfo['numcbde'] == $_POST['numcbde'])
+      {
+	header('Location: moncompte.php');
+      }
+    else
+      {
+	header('Location: adherents.php?numcbde='.$_POST['numcbde']);
+      }
+  }
+elseif ($passe_droit)
   {
     $req = $req."pseudo='".protect($_POST['pseudo'])."',
                  section='".protect($_POST['section'])."', 
