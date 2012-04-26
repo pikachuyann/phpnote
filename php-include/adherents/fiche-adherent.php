@@ -66,7 +66,7 @@ function fiche_page($numcbde)
 ?>
 <input type="hidden" name="numcbde" value="<?= $numcbde ?>" />
 <table>
-<tr><th>Nom</th><th>Droit</th><th>Surdroit</th></tr>
+<tr><th></th><th>Droit</th><th>Surdroit</th></tr>
 <?php
 	    $p = 1;
 	    for($i = 0; $i < count($liste_droits); $i++)
@@ -78,7 +78,7 @@ function fiche_page($numcbde)
               }
 ?>
 <tr><td>SUPREME</td><td></td><td><?php if ($info["supreme"]) {echo "oui";} else {echo "non";} ?></td></tr>
-<tr><td></td><td></td><td><input type="submit" value="Valider"/></td></tr>
+<tr><td></td><td colspan="2"><input type="submit" value="Valider"/></td></tr>
 </table>
 </form>
 <?php
