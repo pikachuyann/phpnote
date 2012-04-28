@@ -11,7 +11,11 @@ if(isset($_GET['numcbde']))
     // La gestion des droits est assurée par la fonction en interne
     fiche_page($_GET['numcbde']);
   }
-elseif (su(ADHERENTS))
+elseif (!su(ADHERENTS))
+  {
+    login_page("adherents.php", msg_nondroits(ADHERENTS));
+  }
+else
   {
     $rep = mysql_query("SELECT * FROM adherents ORDER BY nom LIMIT 15;", $sqlPointer);
 ?>
