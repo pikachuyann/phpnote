@@ -11,5 +11,5 @@ define("TEMPS_EXPIRCOMPLET", 300); // 5 minutes
 
 define("TOTO", 42); // Gné?
 
-define("FIN_AFFICHAGE", 48*3600);
+define("FIN_AFFICHAGE", 7*24*3600); // 7 jours
 ?>
