@@ -6,7 +6,7 @@ function adh_textbox($nom_de_sortie, $par_defaut, $modifiable)
 <span id="textbox_<?= $nom_de_sortie ?>"<?php 
   if ($modifiable) 
     { 
-?> onClick="adh_textbox_js('<?= $nom_de_sortie ?>', '<?= $par_defaut ?>')" <?php 
+?> onClick="adh_textbox_js('<?= $nom_de_sortie ?>', '<?= addslashes($par_defaut) ?>')" <?php 
     } 
 ?>>
 <?= $par_defaut ?>&nbsp;
@@ -21,7 +21,7 @@ function adh_td_textbox($nom_de_sortie, $par_defaut, $modifiable)
 <td id="textbox_<?= $nom_de_sortie ?>"<?php 
   if ($modifiable) 
     { 
-?> onClick="adh_textbox_js('<?= $nom_de_sortie ?>', '<?= $par_defaut ?>')" <?php 
+?> onClick="adh_textbox_js('<?= $nom_de_sortie ?>', '<?= addslashes($par_defaut) ?>')" <?php 
     } 
 ?>>
 <?= $par_defaut ?>&nbsp;

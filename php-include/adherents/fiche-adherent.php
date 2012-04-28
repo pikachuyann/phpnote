@@ -50,7 +50,7 @@ function fiche_page($numcbde)
 <form action="<?= $cible ?>" class="formulaire_preinscription" method="post">
 
 
-<div class='titre_de_page'>Fiche de l'adh&eacute;rent <?= adh_textbox("nom", $info['nom'], ($type=="profil") && su(SUPREME)) ?> <?= adh_textbox("prenom", $info['prenom'], ($type=="profil") && su(SUPREME)) ?></div> <?php //' ?> 
+<div class='titre_de_page'>Fiche de l'adh&eacute;rent <?= adh_textbox("nom", $info["nom"], ($type=="profil") && su(SUPREME)) ?> <?= adh_textbox("prenom", addslashes($info['prenom']), ($type=="profil") && su(SUPREME)) ?></div> <?php //' ?> 
 <div class='menu_interieur'>
 <?php if ($type=="profil") { ?><strong>Profil</strong><?php } else { ?><a href='?numcbde=<?= $numcbde ?>&type=profil'>Profil</a><?php } ?>
  -
@@ -93,7 +93,7 @@ function fiche_page($numcbde)
 </tr>
 <tr>
   <td>Nom de note:</td>
-  <?= adh_td_textbox("pseudo", $info['pseudo'], $passe_droit) ?>
+<?= adh_td_textbox("pseudo", $info['pseudo'], $passe_droit) ?>
 </tr>
 <tr>
   <td>Solde:</td>
@@ -101,11 +101,11 @@ function fiche_page($numcbde)
 </tr>
 <tr>
   <td>Section:</td>
-  <?= adh_td_textbox("section", $info['section'], $passe_droit) ?>
+<?= adh_td_textbox("section", $info['section'], $passe_droit) ?>
 </tr>
 <tr>
   <td>Fonctions:</td>
-  <?= adh_td_textbox("fonctions", $info['fonctions'], su(BUREAU)) ?>
+<?= adh_td_textbox("fonctions", $info['fonctions'], su(BUREAU)) ?>
 </tr>
 <tr>
   <td>email:</td>
@@ -117,7 +117,7 @@ function fiche_page($numcbde)
 </tr>
 <tr>
   <td>Probl&egrave;mes de sant&eacute;:</td>
-  <?= adh_td_textbox("pb_sante", $info['pb_sante'], $passe_droit) ?>
+<?= adh_td_textbox("pb_sante", $info['pb_sante'], $passe_droit) ?>
 </tr>
 <?php
   // Pour utiliser la même fonction pour afficher deux choses différentes
