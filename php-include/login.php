@@ -1,14 +1,26 @@
 <?php
+
 	/* Gestion des identifications */
 if (isset($_POST['user']) && isset($_POST['pwd']))
   {
-    do_login($_POST);
+    $login_ok = do_login($_POST);
     if (isset($_COOKIE['post_keys']))
       $_POST = load('post');
     if (isset($_COOKIE['get_keys']))
       $_GET = load('get');
     setcookie('post', "", time() - 1);
     setcookie('get', "", time() - 1);
+    if ($login_ok == 1)
+      {
+	if (isset($_COOKIE['source']))
+	  {
+	    login_page($_COOKIE['source'], "Couple Nom d'utilisateur/Mot de passe invalide");
+	  }
+	else
+	  {
+	    login_page("index.php", "Couple Nom d'utilisateur/Mot de passe invalide");
+	  }
+      }
   }
 else
   {
@@ -90,6 +102,7 @@ function do_login($post)
 
 function login_page($source, $msg)	
 {
+  setcookie('source', $source);
   save('post', $_POST);
   save('get', $_GET);
   $userinfo["numcbde"]=-1;
