@@ -15,8 +15,8 @@ elseif (su(ADHERENTS))
   {
     $rep = mysql_query("SELECT * FROM adherents ORDER BY nom LIMIT 15;", $sqlPointer);
 ?>
-  Rechercher: <input id="search" type="text" autocomplete="off" />
-  <div id="results">
+  Rechercher: (par nom) <input id="searchnom" type="text" autocomplete="off" /> (par note) <input id="searchnote" type="text" autocomplete="off" />
+<div id="results">
 <table>
    <tr><th>Carte</th><th>Nom</th><th>Pr&eacute;nom</th><th>Nom de note</th><th>Solde</th><th>Num&eacute;ro de t&eacute;l&eacute;phone</th></tr>
 <?php
@@ -31,10 +31,11 @@ elseif (su(ADHERENTS))
                 <td>".$info['numero_tel']."</td>
               </tr>";
       }
-    echo "</table>";
 ?>
+
+</table>
 </div>
-  <script type="text/javascript" src="js-include/search-adh.js"></script>
+<script type="text/javascript" src="js-include/search-adh.js"></script>
 <?php
      }
 bas_de_page($userinfo);

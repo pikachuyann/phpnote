@@ -1,14 +1,16 @@
 (function()
  {
-     var searchElement = document.getElementById('search');
+     var searchNom = document.getElementById('searchnom');
+     var searchNote = document.getElementById('searchnote');
      var results = document.getElementById('results');
      var previousRequest;
-     var previousValue = searchElement.value;
+     var previousNom = searchNom.value;
+     var previousNote = searchNote.value;
 
-     function getResults(filtre)
+     function getResults(filtre_nom, filtre_note)
      {
 	 var xhr = new XMLHttpRequest();
-	 xhr.open('GET', 'http://phpnote.pikachuyann.fr/adh-ajax.php?filtre='+encodeURIComponent(filtre));
+	 xhr.open('GET', 'http://phpnote.pikachuyann.fr/adh-ajax.php?filtre_nom='+encodeURIComponent(filtre_nom)+'&filtre_note='+encodeURIComponent(filtre_note));
 	 
 	 xhr.onreadystatechange = function() {
 	     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -19,15 +21,27 @@
 	 return xhr;
      }
 
-     searchElement.onkeyup = function(e)
+     searchNom.onkeyup = function(e)
      {
-	 if (searchElement.value != previousValue)
+	 if (searchNom.value != previousNom)
 	 {
-	     previousValue = searchElement.value;
+	     previousNom = searchNom.value;
 	     if (previousRequest && previousRequest.readyState < 4)
 		 previousRequest.abort();
 
-	     previousRequest = getResults(previousValue);
+	     previousRequest = getResults(previousNom, previousNote);
+	 }
+     };   
+
+     searchNote.onkeyup = function(e)
+     {
+	 if (searchNote.value != previousNote)
+	 {
+	     previousNote = searchNote.value;
+	     if (previousRequest && previousRequest.readyState < 4)
+		 previousRequest.abort();
+
+	     previousRequest = getResults(previousNom, previousNote);
 	 }
      };   
  }) ();
