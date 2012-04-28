@@ -17,8 +17,9 @@ else
       $efiltre = array_filter(explode(' ', $filtre), "not_empty");
       if (count($efiltre) < 2)
 	{
-	  return("         nom LIKE '".protect(trim($filtre))."%' 
-                  OR    prenom LIKE '".protect(trim($filtre))."%' ");
+	  return("      nom LIKE '".protect(trim($filtre))."%' 
+                  OR    nom LIKE '% ".protect(trim($filtre))."%' 
+                  OR prenom LIKE '".protect(trim($filtre))."%' ");
 	}
       else
 	{
