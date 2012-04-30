@@ -31,6 +31,7 @@ elseif (isset($_GET["filtre"]))
                        WHERE n.pseudo LIKE '".protect($_GET["filtre"])."%'
                        AND n.numcbde = h.numcbde AND n.fin_affichage > '".$now."')  
             ORDER BY a.pold;";
+
     $rep = mysql_query($req, $sqlPointer);
     while($info = mysql_fetch_array($rep))
       {
