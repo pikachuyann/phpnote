@@ -10,7 +10,7 @@
      function getResults(filtre_nom, filtre_note)
      {
 	 var xhr = new XMLHttpRequest();
-	 xhr.open('GET', 'http://phpnote.pikachuyann.fr/adh-ajax.php?filtre_nom='+encodeURIComponent(filtre_nom)+'&filtre_note='+encodeURIComponent(filtre_note));
+	 xhr.open('GET', 'http://phpnote.pikachuyann.fr/adh-ajax/adh-ajax.php?filtre_nom='+encodeURIComponent(filtre_nom)+'&filtre_note='+encodeURIComponent(filtre_note));
 	 
 	 xhr.onreadystatechange = function() {
 	     if (xhr.readyState == 4 && xhr.status == 200) {
