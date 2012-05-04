@@ -77,3 +77,11 @@ BODY {
 .menu_interieur A:hover {
 	font-weight:bold;
 }
+
+.switchCategorie {
+	cursor:pointer;
+	cursor:hand;
+}
+.switchCategorie:hover {
+	font-weight:bold;
+}

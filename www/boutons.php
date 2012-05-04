@@ -29,8 +29,35 @@ if (isset($_GET["type"])) {
 <?php
 	if ($type=="categ") {
 		/* Gestion des diverses catégories */
+		if (isset($_POST["nom"])) {
+			$nom=mysql_real_escape_string(trim($nom));
+			mysql_query("INSERT INTO categories_boutons(nom,affichage) VALUES('".$_POST["nom"]."',0)");
+		}
 ?>
+<p>Vous pouvez ajouter une cat&eacute;gorie de boutons. Pour chaque cat&eacute;gorie, vous pouvez d&eacute;cider si elle est affich&eacute;e ou non dans l'interface de la note.</p>
+<table class='listeCategories' border=1>
+<form name='ajouterCategorie' action='?type=categ' method='POST'>
+<tr>
+<td> <input type='text' name='nom'> </td>
+<td> <input type='submit' value='Ajouter'> </td>
+</tr>
+<?php
+	$requete="SELECT * FROM categories_boutons";
+	$reponseS=mysql_query($requete);
+	while ($reponse=mysql_fetch_assoc($reponseS)) {
+		echo "<tr><td>".$reponse["nom"]."</td><td id='categ".$reponse["id"]."' class='switchCategorie' ";
+		if ($reponse["affichage"]) {
+			echo "onClick='chgCategorie(".$reponse["id"].",0)'> Affichée";
+		}
+		else {
+			echo "onClick='chgCategorie(".$reponse["id"].",1)'> Masqu&eacute;e";
+		}
+		echo "</td></tr>";
+	}
+?>
+</form>
 
+</table>
 <?php
 	}
 	else {
