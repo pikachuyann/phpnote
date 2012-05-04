@@ -30,8 +30,8 @@ if (isset($_GET["type"])) {
 	if ($type=="categ") {
 		/* Gestion des diverses catégories */
 		if (isset($_POST["nom"])) {
-			$nom=mysql_real_escape_string(trim($nom));
-			mysql_query("INSERT INTO categories_boutons(nom,affichage) VALUES('".$_POST["nom"]."',0)");
+			$nom=mysql_real_escape_string(trim($_POST["nom"]));
+			mysql_query("INSERT INTO categories_boutons(nom,affichage) VALUES('".$nom."',0)");
 		}
 ?>
 <p>Vous pouvez ajouter une cat&eacute;gorie de boutons. Pour chaque cat&eacute;gorie, vous pouvez d&eacute;cider si elle est affich&eacute;e ou non dans l'interface de la note.</p>
@@ -47,10 +47,10 @@ if (isset($_GET["type"])) {
 	while ($reponse=mysql_fetch_assoc($reponseS)) {
 		echo "<tr><td>".$reponse["nom"]."</td><td id='categ".$reponse["id"]."' class='switchCategorie' ";
 		if ($reponse["affichage"]) {
-			echo "onClick='chgCategorie(".$reponse["id"].",0)'> Affichée";
+			echo "onClick='chgCategorie(".$reponse["id"].")'>Affichée";
 		}
 		else {
-			echo "onClick='chgCategorie(".$reponse["id"].",1)'> Masqu&eacute;e";
+			echo "onClick='chgCategorie(".$reponse["id"].")'>Masquée";
 		}
 		echo "</td></tr>";
 	}
@@ -66,7 +66,7 @@ if (isset($_GET["type"])) {
 <?php
 	}
 ?>
-
+<script type="text/javascript" src="js-include/boutons.js"></script>
 <?php
 
 }
