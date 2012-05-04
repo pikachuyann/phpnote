@@ -80,7 +80,6 @@ BODY {
 
 .switchCategorie {
 	cursor:pointer;
-	cursor:hand;
 }
 .switchCategorie:hover {
 	font-weight:bold;
