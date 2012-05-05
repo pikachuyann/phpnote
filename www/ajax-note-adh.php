@@ -1,6 +1,6 @@
 <?php
 
-include("../../php-include/common-includes.php");
+include("../php-include/common-includes.php");
 
 if (!su(ADHERENTS))
   {
@@ -31,13 +31,18 @@ elseif (isset($_GET["filtre"]))
                        WHERE n.pseudo LIKE '".protect($_GET["filtre"])."%'
                        AND n.numcbde = h.numcbde AND n.fin_affichage > '".$now."')  
             ORDER BY a.pold;";
-
+    $req = "SELECT numcbde, pseudo, solde FROM adherents WHERE pseudo LIKE '".protect($_GET["filtre"])."%' ORDER BY pseudo;";
     $rep = mysql_query($req, $sqlPointer);
+?>
+<select size="4">
+<?php
     while($info = mysql_fetch_array($rep))
       {
-	echo "<input type=\"hidden\" id=\"s".$info["numcbde"]."\" value=\"".$info["solde"]."\" />";
-	echo "<option id=\"n".$info["numcbde"]."\" >";
+?>
+<option onClick="note_client(<?= $info['numcbde'] ?>,'<?= addslashes($info['pseudo']) ?>',<?= $info['solde'] ?>)" onMouseOver="note_mouseover('<?= addslashes($info['pseudo']) ?>',<?= $info['solde'] ?>)" ><?= $info['pseudo'] ?></option>
+<?php
 	// Je ferai moins moche plus tard
+	/*
 	if ($info["pold"] != $info["pnow"])
 	  {
 	    echo "<i>".$info["pold"]."</i> -> ".$info["pnow"]."</option>";
@@ -46,5 +51,10 @@ elseif (isset($_GET["filtre"]))
 	  {
 	    echo $info["pnow"]."</option>";
 	  }
+	*/
       }
+?>
+</select>
+<?php
   }
+?>

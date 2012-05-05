@@ -16,7 +16,7 @@ else
     while($info = mysql_fetch_array($rep))
       {
 ?>
-<button value="<?= $info['nom'] ?>" onClick="note_bouton(<?= $info['id'] ?>)"/>
+<button onClick="note_bouton(<?= $info['id'] ?>,'<?= addslashes($info['nom']) ?>',<?= $info['montant'] ?>)"><?= $info['nom'] ?></button>
 <?php
       }
   }

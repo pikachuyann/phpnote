@@ -1,6 +1,6 @@
 <?php
 
-include("../../php-include/common-includes.php");
+include("../php-include/common-includes.php");
 
 function note_bool($nom_de_sortie, $par_defaut)
 {
@@ -17,9 +17,9 @@ function note_bool($nom_de_sortie, $par_defaut)
       $html_def2 = "off";
     }
 ?>
-<span id="boolbutton_<?= $nom_de_sortie ?>" onClick="note_bool_js('<?= $nom_de_sortie ?>', '<?= $html_def ?>')">
+<span id="boolbutton_<?= $nom_de_sortie ?>" onClick="note_bool_js('<?= $nom_de_sortie ?>', '<?= $html_def ?>')" >
 <?= $real_name ?>
-<input type="hidden" name="<?= $nom_de_sortie ?>" value="<?= $html_def2 ?>" />
+<input type="hidden" id="<?= $nom_de_sortie ?>" value="<?= $html_def2 ?>" />
 </span>
 <?php
 }

@@ -24,15 +24,15 @@ function note_mouseover(nom, solde)
     document.getElementById('affiche_adh_argent').innerHTML = solde;
 }
 
-/*
 function escape_all(ch) 
 {
+    /*
     ch = ch.replace(/\\/g,"\\\\");
     ch = ch.replace(/\'/g,"\\\'");
     ch = ch.replace(/\"/g,"\\\"");
+    */
     return ch;
 }
-*/
 
 function draw_selection()
 {
@@ -70,7 +70,7 @@ function note_client(pid, pnom, psolde)
     draw_selection();
 }
 
-function note_bouton(pid, pnom, pmontant)
+function note_bouton(pid, pnom, pmontant, preceveur)
 {
     if (listeClients.length > 0)
     {
@@ -120,10 +120,10 @@ function note_bouton_undo(pid)
 
 function note_categorie(id)
 {
+    alert("Categorie click");
     // AJAX vers ajax-note-boutons.php
-    if (derniereRequeteC.readyState < 4)
+    if (derniereRequeteC && derniereRequeteC.readyState < 4)
 	derniereRequeteC.abort();
-
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-boutons.php?categ='+encodeURIComponent(id));
 	 
@@ -136,7 +136,7 @@ function note_categorie(id)
     derniereRequeteC = xhr;
 }
 
-var ancienneValeurA;
+var ancienneValeurA = '';
 var ancienneRequeteA;
 
 function search_adh()

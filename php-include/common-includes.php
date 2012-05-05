@@ -11,5 +11,6 @@
 
 	include("../php-include/droits.php");
 	include("../php-include/login.php");
+        include("../php-include/note/categories.php");
 
 ?>

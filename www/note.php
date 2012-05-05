@@ -1,8 +1,8 @@
 <?php
 
 include("../php-include/common-includes.php");
+//include("../php-include/note/categories.php");
 
-function gen_categories() {return ""; }
 if(!su(NOTE))
   {
     login_page("note.php", msg_nondroits(NOTE));
@@ -13,16 +13,22 @@ else
 
 ?>
  
-<input id="searchadh" type="text" />
-<div id="resultadh"></div> <!-- un tableau ou des options -->
+<input id="search" type="text" onKeyUp="search_adh()" />
 
-   <?= gen_categories() ?>
-<div id="resultboutons"></div> <!-- des boutons -->
+<div id="boite-adh"></div> <!-- un tableau ou des options -->
 
-<div id="currentSelection"></div> <!-- un tableau ou des options -->
+<?= gen_categories() ?>
 
-<div id="historique"><table><tr><td>Coucou</td></tr><tr><td> </td></tr></table></div>
+<div id="boite-boutons"></div> <!-- des boutons -->
 
+<div id="affiche_selection"></div> <!-- un tableau ou des options -->
+
+<div id="affiche_adh_nom"></div>
+<div id="affiche_adh_argent"></div>
+
+<div id="historique"></div>
+
+<script type="text/javascript" src="js-include/note.js"></script>
 <?php
     bas_de_page($userinfo);
   }
