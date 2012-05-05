@@ -61,14 +61,33 @@ if (isset($_GET["type"])) {
 <?php
 	}
 	else {
+		/* Gestion des boutons */
+		// Génération de la liste des catégories pour le SELECT hors formulaire
+		$options="";
+		$requete="SELECT * FROM categories_boutons";
+		$reponseS=mysql_query($requete);
+		while ($reponse=mysql_fetch_assoc($reponseS)) {
+			$options.="<option value='".$reponse["id"]."'>".$reponse["nom"]."</option>";
+		}
 ?>
+<center style='margin:10px;'> <select id='slctCategory' onChange='updBoutons()'><?= $options ?></select> </center>
+<table border=1>
+	<thead>
+		<tr><th>Nom</th><th>Montant</th><th>Receveur</th><th> </th></tr>
+	</thead>
+	<tbody id='btnList'>
+	</tbody>
+	<tfoot>
+		<tr><td><input type='text' name='nom' id='newButtonName'></td><td><input type='text' name='montant' size='5' id='newButtonValue'></td><td><input type='text' name='receveur' size='3' id='newButtonWho'></td><td><input type='submit' value='Ajouter' onClick='addBouton()'></td></tr>
+	</tfoot>
+</table>
 
 <?php
 	}
 ?>
 <script type="text/javascript" src="js-include/boutons.js"></script>
 <?php
-
+	if ($options) { echo "<script type='text/javascript'> updBoutons() </script>"; }
 }
 
 bas_de_page($userinfo);
