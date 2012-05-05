@@ -87,7 +87,7 @@ if (isset($_GET["type"])) {
 ?>
 <script type="text/javascript" src="js-include/boutons.js"></script>
 <?php
-	if ($options) { echo "<script type='text/javascript'> updBoutons() </script>"; }
+	if (isset($options)) { echo "<script type='text/javascript'> updBoutons() </script>"; }
 }
 
 bas_de_page($userinfo);
