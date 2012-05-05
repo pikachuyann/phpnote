@@ -5,12 +5,12 @@ var derniereRequeteC;
 function transaction(plisteClients, plisteConsos)
 {
     clients = plisteClients[0].id;
-    for (int i = 1; i < plisteClients; i++)
+    for (i = 1; i < plisteClients; i++)
     {
 	clients = clients + "|" + plisteClients[i].id;
     }
     consos = plisteConsos[0].id;
-    for (int i = 1; i < plisteConsos; i++)
+    for (i = 1; i < plisteConsos; i++)
     {
 	consos = consos + "|" + plisteConsos[i].id;
     }
@@ -40,14 +40,14 @@ function draw_selection()
     var res = "<table>";
     if (listeClients.length > 0)
     {
-	for (int i = 0; i < listeClients.length; i++)
+	for (i = 0; i < listeClients.length; i++)
 	{
 	    res = res+"<tr><td onClick=\"note_client_undo("+escape_all(listeClients[i].id)+")\" onMouseOver=\"note_mouseover("+escape_all(listeClients[i].note)+", "+escape_all(listeClients[i].solde)+")\" >"+listeClients[i].note+"</td></tr>";
 	}
     }
     else
     {
-	for (int i = 0; i < listeConsos.length; i++)
+	for (i = 0; i < listeConsos.length; i++)
 	{
 	    res = res+"<tr><td onClick=\"note_bouton_undo("+escape_all(listeConsos[i].id)+")\" onMouseOver=\"note_mouseover("+escape_all(listeConsos[i].nom)+", "+escape_all(listeConsos[i].montant)+")\" >"+listeConsos[i].nom+"</td></tr>";
 	}
@@ -86,11 +86,11 @@ function note_bouton(pid, pnom, pmontant, preceveur)
 
 function note_client_undo(pid)
 {
-    for (int i = 0; i < listeClients.length; i++)
+    for (i = 0; i < listeClients.length; i++)
     {
 	if (listeClients[i].id == pid)
 	{
-	    for(int j = i; j < listeClients.length - 1; j++)
+	    for(j = i; j < listeClients.length - 1; j++)
 	    {
 		listeClients[j] = listeClients[j+1];
 	    }
@@ -103,11 +103,11 @@ function note_client_undo(pid)
 
 function note_bouton_undo(pid)
 {
-    for (int i = 0; i < listeConsos.length; i++)
+    for (i = 0; i < listeConsos.length; i++)
     {
 	if (listeConsos[i].id == pid)
 	{
-	    for(int j = i; j < listeConsos.length - 1; j++)
+	    for(j = i; j < listeConsos.length - 1; j++)
 	    {
 		listeConsos[j] = listeConsos[j+1];
 	    }
