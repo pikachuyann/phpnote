@@ -5,12 +5,12 @@ var derniereRequeteC;
 function transaction(plisteClients, plisteConsos)
 {
     clients = plisteClients[0].id;
-    for (i = 1; i < plisteClients; i++)
+    for (i = 1; i < plisteClients.length; i++)
     {
 	clients = clients + "|" + plisteClients[i].id;
     }
     consos = plisteConsos[0].id;
-    for (i = 1; i < plisteConsos; i++)
+    for (i = 1; i < plisteConsos.length; i++)
     {
 	consos = consos + "|" + plisteConsos[i].id;
     }
@@ -28,7 +28,7 @@ function escape_all(ch)
 {
     /*
     ch = ch.replace(/\\/g,"\\\\");
-    ch = ch.replace(/\'/g,"\\\'");
+    ch = ch.replace(/\'/g,"\\'");
     ch = ch.replace(/\"/g,"\\\"");
     */
     return ch;
@@ -120,7 +120,7 @@ function note_bouton_undo(pid)
 
 function note_categorie(id)
 {
-    alert("Categorie click");
+    // alert("Categorie click");
     // AJAX vers ajax-note-boutons.php
     if (derniereRequeteC && derniereRequeteC.readyState < 4)
 	derniereRequeteC.abort();
@@ -136,19 +136,19 @@ function note_categorie(id)
     derniereRequeteC = xhr;
 }
 
-var ancienneValeurA = '';
+var ancienneValeurA = "";
 var ancienneRequeteA;
 
 function search_adh()
 {
     var searchNom = document.getElementById('search');
-    
-    if (searchNom.value == ancienneValeurA)
+
+    if (searchNom.value != ancienneValeurA)
     {
 	ancienneValeurA = searchNom.value;
 	if (ancienneRequeteA && ancienneRequeteA.readystate < 4)
 	    ancienneRequeteA.abort();
-	
+
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-adh.php?filtre='+encodeURIComponent(ancienneValeurA));
 	

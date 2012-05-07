@@ -29,6 +29,7 @@ else
 <div id="historique"></div>
 
 <script type="text/javascript" src="js-include/note.js"></script>
+
 <?php
     bas_de_page($userinfo);
   }
