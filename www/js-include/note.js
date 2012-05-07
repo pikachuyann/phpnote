@@ -161,3 +161,10 @@ function search_adh()
 	derniereRequeteA = xhr;
     }
 }
+
+function retrait()
+{
+    if (derniereRequeteC && derniereRequeteC.readyState < 4)
+	derniereRequeteC.abort();
+    document.getElementById('boite-boutons').innerHTML = "";
+}

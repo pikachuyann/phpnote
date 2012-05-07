@@ -12,20 +12,31 @@ else
     haut_de_page($userinfo, "Note");
 
 ?>
- 
-<input id="search" type="text" onKeyUp="search_adh()" />
 
-<div id="boite-adh"><select size="4"></select></div> <!-- un tableau ou des options -->
-
-<?= gen_categories() ?>
-
+<table> 
+<tr>
+<td><input id="search" type="text" onKeyUp="search_adh()" /></td><td>
+</td>
+<td></td><td></td>
+</tr>
+<tr>
+<td><div id="boite-adh"><select size="4"></select></div> <!-- un tableau ou des options --></td>
+<td><div id="affiche_selection"></div> <!-- un tableau ou des options -->
+</td>
+<td><?= gen_categories() ?></td>
+<td>
 <div id="boite-boutons"></div> <!-- des boutons -->
-
-<div id="affiche_selection"></div> <!-- un tableau ou des options -->
-
+</td>
+<tr>
+<td></td>
+<td></td>
+<td>
 <div id="affiche_adh_nom"></div>
 <div id="affiche_adh_argent"></div>
-
+</td>
+<td></td>
+</tr>
+</table>
 <div id="historique"></div>
 
 <script type="text/javascript" src="js-include/note.js"></script>
