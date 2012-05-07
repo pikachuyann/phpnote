@@ -6,7 +6,7 @@ if (!su(ADHERENTS))
   {
     die("Cette page n'est pas accessible sans les droits appropriés");
   }
-elseif (isset($_GET["filtre"]))
+elseif (isset($_GET["filtre"]) && $_GET["filtre"] != "")
   {
     $data = array();
     $now=date("Y-m-d H:i:s");
@@ -55,6 +55,12 @@ elseif (isset($_GET["filtre"]))
       }
 ?>
 </select>
+<?php
+  }
+else
+  {
+?>
+    <select size="4"></select>
 <?php
   }
 ?>

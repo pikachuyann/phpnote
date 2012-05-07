@@ -15,7 +15,7 @@ else
  
 <input id="search" type="text" onKeyUp="search_adh()" />
 
-<div id="boite-adh"></div> <!-- un tableau ou des options -->
+<div id="boite-adh"><select size="4"></select></div> <!-- un tableau ou des options -->
 
 <?= gen_categories() ?>
 
