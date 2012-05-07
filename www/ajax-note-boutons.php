@@ -16,7 +16,7 @@ else
     while($info = mysql_fetch_array($rep))
       {
 ?>
-<button onClick="note_bouton(<?= $info['id'] ?>,'<?= addslashes($info['nom']) ?>',<?= $info['montant'] ?>)"><?= $info['nom'] ?></button>
+<button onClick="note_bouton(<?= $info['id'] ?>,'<?= addslashes($info['nom']) ?>',<?= $info['montant'] ?>)" onMouseOver="note_mouseover('<?= addslashes($info['nom']) ?>', <?= $info['montant'] ?>)" ><?= $info['nom'] ?></button>
 <?php
       }
   }
