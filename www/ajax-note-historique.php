@@ -2,7 +2,6 @@
 
 include("../php-include/common-includes.php");
 
-
 function str_real_pad($string, $taille, $alignement = STR_PAD_RIGHT)
 {
   if (strlen($string) > $taille)
@@ -13,7 +12,7 @@ function str_real_pad($string, $taille, $alignement = STR_PAD_RIGHT)
     {
       return str_pad($string, $taille, " ", $alignement);
     }
-}
+};
 
 if (!su(NOTE))
   {
@@ -21,15 +20,15 @@ if (!su(NOTE))
   }
 else
   {
-    $offset = 1;
-    if (isset($_GET["offset"]))
-      $offset = $_GET["offset"];
-    if (!isset($_GET["adh"])
+    $offset = 0;
+    if (isset($_GET["offset"])) { $offset = $_GET["offset"]; }
+    
+    if (!isset($_GET["adh"]))
       {
 	$req = "SELECT t.id, t.date, a1.pseudo AS nom_emetteur, a2.pseudo AS nom_destinataire, b.nom AS nom_conso, t.montant, t.valide 
                 FROM transactions AS t
                 INNER JOIN adherents AS a1 ON t.emetteur=a1.numcbde
-                INNER JOIN adherents AS a2 ON t.destinataire=a2.numcbde
+                INNER JOIN adherents AS a2 ON t.recepteur=a2.numcbde
                 INNER JOIN boutons AS b ON t.idconso=b.id
                 ORDER BY date DESC
                 LIMIT ".protect($offset).", 20;";
@@ -39,7 +38,7 @@ else
 	$req = "SELECT t.id, t.date, a1.pseudo AS nom_emetteur, a2.pseudo AS nom_destinataire, b.nom AS nom_conso, t.montant 
                 FROM transactions AS t
                 INNER JOIN adherents AS a1 ON t.emetteur=a1.numcbde
-                INNER JOIN adherents AS a2 ON t.destinataire=a2.numcbde
+                INNER JOIN adherents AS a2 ON t.recepteur=a2.numcbde
                 INNER JOIN boutons AS b ON t.idconso=b.id
                 WHERE (a1.numcbde=".protect($_GET["adh"])." 
                 OR     a2.numcbde=".protect($_GET["adh"]).") 
@@ -47,13 +46,28 @@ else
                 ORDER BY date DESC
                 LIMIT ".protect($offset).", 20;";
       }
-    $rep = mysql_query($req, $sqlPointer);
-    while($info = mysql_fetch_array($req))
-      {
-?>	
-	  <option value="<?= $info['id'] ?>" >
-	  <?= $info["date"] ?> <?= str_real_pad($info["nom_emetteur"], 10) ?> <?= str_real_pad($info["nom_destinataire"], 10) ?> <?= str_real_pad($info["nom_conso"], 10) ?> <?= $info["montant"] ?> <?php if (!isset($_GET["adh"])) { if($info["valide"]) {echo "oui";} else {echo "non";} } ?></option>
-<?php
+    $rep = mysql_query($req, $sqlPointer) or die(mysql_error());
+    while($info = mysql_fetch_array($rep))
+      {	
+	$res = "<option value=".$info['id']." >";
+	$res .= $info["date"]." ";
+	$res .= str_real_pad($info["nom_emetteur"], 10)." ";
+	$res .= str_real_pad($info["nom_destinataire"], 10)." ";
+	$res .= str_real_pad($info["nom_conso"], 10)." ";
+	$res .= $info["montant"]." "; 
+	if (!isset($_GET["adh"])) 
+	  { 
+	    if($info["valide"]) 
+	      {
+		$res .= "oui";
+	      } 
+	    else 
+	      {
+		$res .= "non";
+	      } 
+	  }
+	$res .= "</option>";
+	echo $res;
       }
   }
 ?>
