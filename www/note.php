@@ -37,7 +37,11 @@ else
 <td></td>
 </tr>
 </table>
-<div id="historique"></div>
+
+<select id="historique" size="30" onScroll="historique_scroll(this)" multiple="multiple">
+<div id="historique_content">
+</div>
+</select>
 
 <script type="text/javascript" src="js-include/note.js"></script>
 
