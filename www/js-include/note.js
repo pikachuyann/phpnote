@@ -14,7 +14,19 @@ function transaction(plisteClients, plisteConsos)
     {
 	consos = consos + "|" + plisteConsos[i].id;
     }
-    alert(clients+"\n"+consos);
+//  alert(clients+"\n"+consos);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-transac.php?trClient='+clients+'&trConso='+consos);
+
+    xhr.onreadystatechange = function() {
+       if (xhr.readyState == 4 && xhr.status == 200) {
+          
+       }
+    };
+    xhr.send(null);
+    derniereRequeteC = xhr;
+
 }
 
 function note_mouseover(nom, solde)
