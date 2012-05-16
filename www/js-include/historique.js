@@ -35,21 +35,28 @@ function historique_scroll(sel, adh)
     }
 }
 
-function historique_reset()
+function historique_reset(adh)
 {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-historique.php?nb=1');	
+    if (adh == -1)
+    {
+	xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-historique.php?nb=1');	
+    }
+    else
+    {
+	xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-historique.php?nb=1&adh='+encodeURIComponent(adh));
+    }	
     xhr.onreadystatechange = function() {
 	if (xhr.readyState == 4 && xhr.status == 200) {
 	    nbTransac = xhr.responseText;
-	    historique_really_reset();
+	    historique_really_reset(adh);
 	}
     };
     xhr.send(null);
     derniereRequeteH = xhr;
 }
 
-function historique_really_reset()
+function historique_really_reset(adh)
 {
     if (derniereRequeteH && derniereRequeteH.readyState < 4)
     {
@@ -58,8 +65,14 @@ function historique_really_reset()
     else
     {
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-historique.php?count='+encodeURIComponent(maxContent));
-	
+	if (adh == -1)
+	{
+	    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-historique.php?count='+encodeURIComponent(maxContent));
+	}
+	else
+	{
+	    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-historique.php?count='+encodeURIComponent(maxContent)+'&adh='+encodeURIComponent(adh));
+	}
 	xhr.onreadystatechange = function() {
 	    if (xhr.readyState == 4 && xhr.status == 200) {
 		document.getElementById('historique').innerHTML = xhr.responseText;

@@ -74,7 +74,13 @@ else if(!isset($_GET["nb"]))
   }
 else
   {
-    $req = "SELECT COUNT(*) AS c FROM transactions;";
+    $req = "SELECT COUNT(*) AS c FROM transactions";
+    if (isset($_GET["adh"]))
+      {
+	$adh = $_GET["adh"];
+	$req .= " WHERE emetteur=".protect($adh)." OR recepteur=".protect($adh);
+      }
+    $req .= ";";
     $rep = mysql_query($req, $sqlPointer);
     $info = mysql_fetch_array($rep);
     echo $info["c"];

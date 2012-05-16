@@ -45,7 +45,10 @@ function fiche_page($numcbde)
 	    if ($_GET["type"]=="droits") { 
 	      $type="droits"; $cible="chgdroits.php";
 	    }
-}
+	    if ($_GET["type"]=="historique") {
+	      $type="historique"; $cible="";
+	    }
+	  }
 ?>
 <form action="<?= $cible ?>" class="formulaire_preinscription" method="post">
 
@@ -55,6 +58,8 @@ function fiche_page($numcbde)
 <?php if ($type=="profil") { ?><strong>Profil</strong><?php } else { ?><a href='?numcbde=<?= $numcbde ?>&type=profil'>Profil</a><?php } ?>
  -
 <?php if ($type=="droits") { ?><strong>Droits</strong><?php } else { ?><a href='?numcbde=<?= $numcbde ?>&type=droits'>Droits</a><?php } ?>
+ -
+<?php if ($type=="historique") { ?><strong>Historique</strong><?php } else { ?><a href='?numcbde=<?= $numcbde ?>&type=historique'>Historique</a><?php } ?>
 <?php if (passwd_condition($info))
    {
 ?> - <a href='chgpass.php?numcbde=<?= $numcbde ?>'>Changer le mot de passe</a>
@@ -62,7 +67,25 @@ function fiche_page($numcbde)
 </div>
 
 <?php
-	if ($type=="droits") {
+        if ($type=="historique") {
+?>
+<select id="historique" size="10" onScroll="historique_scroll(this, <?= $numcbde ?>)" multiple="multiple">
+</select>
+<button onClick="historique_reset(<?= $numcbde ?>)">Rafraîchir</button>
+<?php
+	    if (su(NOTE)) {
+?>
+<button onClick="historique_validate()">Valider tout</button>
+<button onClick="historique_unvalidate()">Dévalider tout</button>
+<?php
+	    }
+?>
+<script type="text/javascript" src="js-include/historique.js"></script>
+<script type="text/javascript"> historique_reset(<?= $numcbde ?>); </script>
+</form>
+<?php
+	}
+	else if ($type=="droits") {
 ?>
 <input type="hidden" name="numcbde" value="<?= $numcbde ?>" />
 <table>
