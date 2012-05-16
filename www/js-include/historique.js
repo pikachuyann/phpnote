@@ -1,10 +1,10 @@
 var maxScroll = 0;
-var maxContent = 0;
+var maxContent = 30;
 var derniereRequeteH;
 
-function historique_scroll(sel, adh = -1)
+function historique_scroll(sel, adh)
 {
-    if (AncienneRequeteH && AncienneRequeteH.readyState < 4)
+    if (derniereRequeteH && derniereRequeteH.readyState < 4)
     {
 	sel.scrollTop = maxScroll;
     }
@@ -21,7 +21,7 @@ function historique_scroll(sel, adh = -1)
 	}
 	xhr.onreadystatechange = function() {
 	    if (xhr.readyState == 4 && xhr.status == 200) {
-		document.getElementById('historique_content').innerHTML = document.getElementById('historique_content').innerHTML + xhr.responseText;
+		document.getElementById('historique').innerHTML = document.getElementById('historique').innerHTML + xhr.responseText;
 		maxContent += 30;
 		maxScroll = document.getElementById('historique').scrollTop;
 	    }
@@ -44,7 +44,7 @@ function historique_reset()
 	 
 	xhr.onreadystatechange = function() {
 	    if (xhr.readyState == 4 && xhr.status == 200) {
-		document.getElementById('historique_content').innerHTML = xhr.responseText;
+		document.getElementById('historique').innerHTML = xhr.responseText;
 	    }
 	};
 	xhr.send(null);

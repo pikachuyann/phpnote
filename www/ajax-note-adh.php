@@ -30,7 +30,7 @@ elseif (isset($_GET["filtre"]) && $_GET["filtre"] != "")
                       (SELECT MAX(n.fin_affichage) FROM historique_pseudo AS n
                        WHERE n.pseudo LIKE '".protect($_GET["filtre"])."%'
                        AND n.numcbde = h.numcbde AND n.fin_affichage > '".$now."')  
-            ORDER BY a.pold;";
+            ORDER BY a.pold;"; // << PAN
     $req = "SELECT numcbde, pseudo, solde FROM adherents WHERE pseudo LIKE '".protect($_GET["filtre"])."%' ORDER BY pseudo;";
     $rep = mysql_query($req, $sqlPointer);
 ?>

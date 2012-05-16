@@ -38,12 +38,12 @@ else
 </tr>
 </table>
 
-<select id="historique" size="30" onScroll="historique_scroll(this)" multiple="multiple">
-<div id="historique_content">
-</div>
+<select id="historique" size="10" onScroll="historique_scroll(this, -1)" multiple="multiple">
 </select>
 
 <script type="text/javascript" src="js-include/note.js"></script>
+<script type="text/javascript" src="js-include/historique.js"></script>
+<script type="text/javascript"> historique_reset(); </script>
 
 <?php
     bas_de_page($userinfo);

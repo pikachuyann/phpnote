@@ -17,7 +17,7 @@ function transaction(plisteClients, plisteConsos)
 //  alert(clients+"\n"+consos);
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-transac.php?trClient='+clients+'&trConso='+consos);
+    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-transac.php?trClient='+clients+'&trConsos='+consos);
 
     xhr.onreadystatechange = function() {
        if (xhr.readyState == 4 && xhr.status == 200) {

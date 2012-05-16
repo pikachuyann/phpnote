@@ -9,7 +9,7 @@
 		if (isset($_POST["sect"])) { $sect=trim($_POST["sect"]); } else { $sect=""; }
 		if (isset($_POST["email"])) { $email=trim($_POST["email"]); } else { $email=""; }
 		if (isset($_POST["tel"])) { $tel=trim($_POST["tel"]); } else { $tel=""; }
-		if (isset($_POST["sexe"])) { $sexe=trim($_POST["sexe"]); echo $sexe; } else { $sexe=""; }
+		if (isset($_POST["sexe"])) { $sexe=trim($_POST["sexe"]); } else { $sexe=""; }
 
 		if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["sexe"]) && isset($_POST["sect"]) && isset($_POST["email"]) && isset($_POST["tel"]) && isset($_POST["mdpA"]) && isset($_POST["mdpB"])) {
 			if (!($sexe == "M" || $sexe == "F")) { $errorMsg="Vous &ecirc;tes de sexe inconnu? Soyez honn&ecirc;tes..."; }
@@ -50,7 +50,6 @@
 <li> Remplir ce formulaire de pr&eacute;inscription. Certains champs sont obligatoires (et sont signal&eacute;s par une ast&eacute;risque (*)), d'autres ne le sont pas. Il est pr&eacute;f&eacute;rable de remplir enti&egrave;rement ce formulaire. Les informations enregistr&eacute;es dans ce formulaire ne seront pas utilis&eacute;es en dehors de la phpNote. <i>Attention: C'est une base de <strong>test</strong> qui n'est pas enregistr&eacute;e &agrave; la CNIL !</i> </li>
 <li> Votre inscription sera ensuite valid&eacute;e par l'un des codeurs de cette phpNote, apr&egrave;s demande de votre part. </li>
 </ul>
-<p> Le formulaire n'est pas encore fonctionnel (hum...) </p>
 <form action='?' class='formulaire_preinscription' method='POST'>
 <table>
 <?php	if (isset($errorMsg)) {	?><tr class='preinscr_errMsg'><td colspan='2'><?= $errorMsg ?></td></tr><?php } ?>
