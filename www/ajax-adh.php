@@ -2,6 +2,10 @@
 
 include("../php-include/common-includes.php");
 
+/*
+  Permet de renvoyer dynamiquement la liste des adhérents suivant des filtres
+  dans leurs noms, prénoms et nom de note en considérant l'historique des pseudos
+*/
 if (!su(ADHERENTS))
   {
     die("Cette page n'est pas accessible sans les droits appropriés");
@@ -12,6 +16,9 @@ else
     {
       return($t != "");
     }
+    /*
+      Cette fonction renvoit pour un filtre de nom/prénom le filtrage SQL associé
+    */
     function gen_name_condition($filtre)
     {
       $efiltre = array_filter(explode(' ', $filtre), "not_empty");
@@ -53,6 +60,10 @@ else
 	}
     }
 
+    /*
+      Du highlight pour bien voir où on a trouvé le filtrage et parce que c'est
+      jolie
+    */
     function note_highlight($note, $filtrage)
     {
       return(str_replace($filtrage, "<b>".$filtrage."</b>", $note));
@@ -105,7 +116,7 @@ else
 <table>
    <tr><th>Carte</th><th>Nom</th><th>Pr&eacute;nom</th><th>Nom de note</th><th>Solde</th><th>Num&eacute;ro de t&eacute;l&eacute;phone</th></tr>
 <?php
-																   $dejadit = array();
+										      $dejadit = array();
     while($info = mysql_fetch_array($rep))
       {
 	if (!$filtrage_note)

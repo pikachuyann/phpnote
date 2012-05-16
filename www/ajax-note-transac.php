@@ -2,6 +2,9 @@
 
 include("../php-include/common-includes.php");
 
+/*
+  C'est ici où on passe commande
+*/
 if (!su(NOTE)) {
 	login_page("note.php", msg_nondroits(NOTE));
 }

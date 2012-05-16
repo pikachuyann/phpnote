@@ -2,6 +2,18 @@
 
 include("../php-include/common-includes.php");
 
+/*
+  C'est ici qu'on charge l'historique via AJAX.
+  Il y a plusieurs champs $_GET qu'on peut spécifier:
+   * $_GET["adh"]: pour trier suivant l'historique d'un adhérent particulier
+   * $_GET["nb"]: pour ne sortir en fait que le nombre de transactions au total
+   * $_GET["count"]: le nombre de transactions qu'on veut, par défaut 20
+   * $_GET["offset"]: à partir de laquelle, les transactions étant triés par date
+*/
+
+/*
+  Fonction de padding qui marche pas
+*/
 function str_real_pad($string, $taille, $alignement = STR_PAD_RIGHT)
 {
   if (strlen($string) > $taille)

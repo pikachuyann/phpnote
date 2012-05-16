@@ -1,3 +1,8 @@
+/*
+  Cette fonction gère la tab-complétion et l'affichage des adhérents dans 
+  adhérents.php
+  DEPEND: www/ajax-adh.php
+*/
 (function()
  {
      var searchNom = document.getElementById('searchnom');

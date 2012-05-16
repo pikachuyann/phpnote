@@ -2,6 +2,9 @@
 
 include("../php-include/common-includes.php");
 
+/*
+  Pour afficher dynamiquement les noms de note associés au filtre dans la note
+*/
 if (!su(ADHERENTS))
   {
     die("Cette page n'est pas accessible sans les droits appropriés");
@@ -31,6 +34,11 @@ elseif (isset($_GET["filtre"]) && $_GET["filtre"] != "")
                        WHERE n.pseudo LIKE '".protect($_GET["filtre"])."%'
                        AND n.numcbde = h.numcbde AND n.fin_affichage > '".$now."')  
             ORDER BY a.pold;"; // << PAN
+    /*
+      Ca c'était la requête que je dois débboguer si jamais je veux que les 
+      anciens noms de notes apparaissent dans la note... Mais vu que ça marchera
+      jamais, j'ai choisi d'utiliser une requête plus simple:
+    */
     $req = "SELECT numcbde, pseudo, solde FROM adherents WHERE pseudo LIKE '".protect($_GET["filtre"])."%' ORDER BY pseudo;";
     $rep = mysql_query($req, $sqlPointer);
 ?>
@@ -41,7 +49,8 @@ elseif (isset($_GET["filtre"]) && $_GET["filtre"] != "")
 ?>
 <option onClick="note_client(<?= $info['numcbde'] ?>,'<?= addslashes($info['pseudo']) ?>',<?= $info['solde'] ?>)" onMouseOver="note_mouseover('<?= addslashes($info['pseudo']) ?>',<?= $info['solde'] ?>)" ><?= $info['pseudo'] ?></option>
 <?php
-	// Je ferai moins moche plus tard
+	// Si jamais on veut vraiment que les anciens noms de notes apparaissent:
+        // (A condition que la requête à debboguer marche)
 	/*
 	if ($info["pold"] != $info["pnow"])
 	  {

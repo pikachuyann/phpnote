@@ -3,6 +3,11 @@ var listeConsos = new Array();
 var derniereRequeteC;
 var rafraichirHistorique;
 
+/*
+  Cette fonction permet de demander à ajax-note-transac.php d'enregistrer des
+  transactions 1 conso/n clients ou n clients/1 conso
+  DEPEND: www/ajax-note-transac.php; historique.js
+*/
 function transaction(plisteClients, plisteConsos)
 {
     clients = plisteClients[0].id;
@@ -24,16 +29,11 @@ function transaction(plisteClients, plisteConsos)
 
     xhr.onreadystatechange = function() {
        if (xhr.readyState == 4 && xhr.status == 200) {
-           /*
-	     Ici se pose un problème.
-	     Vu que je ne veux pas reset tout l'historique,
-	     je lui dit de charger les n dernière transactions quand il a finit
-	     donc si quelqu'un en parallèle fait une transaction, je ne 
-	     récupèrerai pas toutes MES transactions.
-	     Vu que appuyer sur Reset règle le problème, je vais laisser
-	     ça comme ça vu que la plupart du temps, cela réagira bien
+	   /*
+	     A la fin de la transaction, on recharge les 30 dernière transactions
+	     dans l'historique
 	   */
-	   historique_add(rafraichirHistorique);
+	   historique_reset(-1);
        }
     };
     xhr.send(null);
@@ -58,6 +58,11 @@ function escape_all(ch)
     return ch;
 }
 
+/*
+  Cette fonction gère l'affichage de la colonne deux de la note. Celle où les
+  consos ou les clients déjà sélectionnés apparaissent.
+  Cliquer sur un champs déselectionne l'objet associé.
+*/
 function draw_selection()
 {
     var selection = document.getElementById('affiche_selection');
@@ -80,6 +85,12 @@ function draw_selection()
     selection.innerHTML = res;
 }
 
+/*
+  Lorsque l'on sélectionne un client ou une conso. Il y a deux cas à chaque fois:
+   * Si un objet de l'autre type a été sélectionné auparavent, on lance une
+     transaction;
+   * Sinon on ajoute l'objet aux objets sélectionnés
+*/
 function note_client(pid, pnom, psolde)
 {
     if (listeConsos.length > 0)
@@ -108,6 +119,9 @@ function note_bouton(pid, pnom, pmontant, preceveur)
     draw_selection();
 }
 
+/*
+  Ces fonctions prennent en charge la "dé-selection" d'un objet
+*/
 function note_client_undo(pid)
 {
     for (i = 0; i < listeClients.length; i++)
@@ -142,6 +156,10 @@ function note_bouton_undo(pid)
     draw_selection();
 }
 
+/*
+  Cette fonction affiche les boutons associés à une catégorie
+  DEPEND: www/ajax-note-boutons.php
+*/
 function note_categorie(id)
 {
     // alert("Categorie click");
@@ -160,6 +178,10 @@ function note_categorie(id)
     derniereRequeteC = xhr;
 }
 
+/*
+  Ici est géré la recherche d'adhérent dans la barre de recherche
+  DEPEND: www/ajax-note-adh.php
+*/
 var ancienneValeurA = "";
 var ancienneRequeteA;
 
@@ -186,6 +208,13 @@ function search_adh()
     }
 }
 
+/*
+  TO BE DONE
+  Ce sont les fonctions qui permettent d'afficher les champs spéciaux:
+    * Retrait
+    * Crédit
+    * Transfert
+*/
 function retrait()
 {
     if (derniereRequeteC && derniereRequeteC.readyState < 4)

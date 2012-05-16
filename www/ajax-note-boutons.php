@@ -1,5 +1,8 @@
 <?php
 
+/*
+  Une fois qu'on clique sur une catégorie, l'AJAX va charger les boutons ici
+*/
 include("../php-include/common-includes.php");
 
 if(!su(NOTE))
