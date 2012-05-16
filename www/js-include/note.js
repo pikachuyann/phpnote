@@ -1,6 +1,7 @@
 var listeClients = new Array();
 var listeConsos = new Array();
 var derniereRequeteC;
+var rafraichirHistorique;
 
 function transaction(plisteClients, plisteConsos)
 {
@@ -19,9 +20,20 @@ function transaction(plisteClients, plisteConsos)
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-transac.php?trClient='+clients+'&trConsos='+consos);
 
+    rafraichirHistorique = Math.max(plisteConsos.length, plisteClients.length);
+
     xhr.onreadystatechange = function() {
        if (xhr.readyState == 4 && xhr.status == 200) {
-          
+           /*
+	     Ici se pose un problème.
+	     Vu que je ne veux pas reset tout l'historique,
+	     je lui dit de charger les n dernière transactions quand il a finit
+	     donc si quelqu'un en parallèle fait une transaction, je ne 
+	     récupèrerai pas toutes MES transactions.
+	     Vu que appuyer sur Reset règle le problème, je vais laisser
+	     ça comme ça vu que la plupart du temps, cela réagira bien
+	   */
+	   historique_add(rafraichirHistorique);
        }
     };
     xhr.send(null);

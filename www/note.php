@@ -40,7 +40,9 @@ else
 
 <select id="historique" size="10" onScroll="historique_scroll(this, -1)" multiple="multiple">
 </select>
-
+<button onClick="historique_reset()">Reset</button>
+<button onClick="historique_validate()">Valider tout</button>
+<button onClick="historique_unvalidate()">D&eacute;valider tout</button>
 <script type="text/javascript" src="js-include/note.js"></script>
 <script type="text/javascript" src="js-include/historique.js"></script>
 <script type="text/javascript"> historique_reset(); </script>

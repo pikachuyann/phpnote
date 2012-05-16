@@ -18,10 +18,12 @@ if (!su(NOTE))
   {
     login_page("note.php", msg_nondroits(NOTE));
   }
-else
+else if(!isset($_GET["nb"]))
   {
     $offset = 0;
     if (isset($_GET["offset"])) { $offset = $_GET["offset"]; }
+    $count = 20;
+    if (isset($_GET["count"])) { $count = $_GET["count"]; }
     
     if (!isset($_GET["adh"]))
       {
@@ -31,7 +33,7 @@ else
                 INNER JOIN adherents AS a2 ON t.recepteur=a2.numcbde
                 INNER JOIN boutons AS b ON t.idconso=b.id
                 ORDER BY date DESC
-                LIMIT ".protect($offset).", 20;";
+                LIMIT ".protect($offset).", ".protect($count).";";
       }
     else
       {
@@ -44,7 +46,7 @@ else
                 OR     a2.numcbde=".protect($_GET["adh"]).") 
                 AND    t.valide=1 
                 ORDER BY date DESC
-                LIMIT ".protect($offset).", 20;";
+                LIMIT ".protect($offset).", ".protect($count).";";
       }
     $rep = mysql_query($req, $sqlPointer) or die(mysql_error());
     while($info = mysql_fetch_array($rep))
@@ -69,5 +71,12 @@ else
 	$res .= "</option>";
 	echo $res;
       }
+  }
+else
+  {
+    $req = "SELECT COUNT(*) AS c FROM transactions;";
+    $rep = mysql_query($req, $sqlPointer);
+    $info = mysql_fetch_array($rep);
+    echo $info["c"];
   }
 ?>
