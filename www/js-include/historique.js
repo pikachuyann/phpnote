@@ -67,11 +67,11 @@ function historique_really_reset(adh)
 	var xhr = new XMLHttpRequest();
 	if (adh == -1)
 	{
-	    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-historique.php?count='+encodeURIComponent(maxContent));
+	    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-historique.php?count=30');
 	}
 	else
 	{
-	    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-historique.php?count='+encodeURIComponent(maxContent)+'&adh='+encodeURIComponent(adh));
+	    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-historique.php?count=30&adh='+encodeURIComponent(adh));
 	}
 	xhr.onreadystatechange = function() {
 	    if (xhr.readyState == 4 && xhr.status == 200) {
