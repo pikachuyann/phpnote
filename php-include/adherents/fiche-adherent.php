@@ -7,7 +7,11 @@ include('../php-include/adherents/common.php'); // Les fichiers sont inclus depu
 function fiche_page($numcbde)
 {
   global $sqlPointer,$_COOKIE,$userinfo,$liste_droits;
-  if ((!su(ADHERENTS) && $numcbde != $userinfo['numcbde']) || $userinfo['numcbde'] == -1)
+  if (!su(INTRANET))
+    {
+      login_page("adherents.php?numcbde=".$numcbde, msg_nondroits(INTRANET));
+    }
+  elseif ((!su(ADHERENTS) && $numcbde != $userinfo['numcbde']) || $userinfo['numcbde'] == -1)
     {
       login_page("adherents.php?numcbde=".$numcbde, msg_nondroits(ADHERENTS));
     }

@@ -8,9 +8,15 @@
 include('../php-include/common-includes.php');
 include('../php-include/adherents/fiche-adherent.php');
 
-haut_de_page($userinfo, "Mon compte", array("inputs-adherents.js"));
-fiche_page($userinfo['numcbde']);
-bas_de_page($userinfo);
-
+if (su(INTRANET))
+  {
+    haut_de_page($userinfo, "Mon compte", array("inputs-adherents.js"));
+    fiche_page($userinfo['numcbde']);
+    bas_de_page($userinfo);
+  }
+else
+  {
+    login_page("moncompte.php", msg_nondroits(INTRANET));
+  }
 // Simple non ?
 ?>
