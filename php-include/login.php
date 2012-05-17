@@ -32,8 +32,12 @@ else
       while ($answer=mysql_fetch_assoc($reply)) { // Le sid étant unique
 	// On a plus ou moins l'userinfo dans la réponse...
 	$upd_req="";
-	if (strtotime($answer["expircomplet"]) < $time) {
+	if (strtotime($answer["expircomplet"]) > $time) {
 	  $upd_req=", expircomplet='".date("Y-m-d H:i:s", time()+TEMPS_EXPIRCOMPLET)."'";
+	}
+	else {
+	  $answer["droits"] = $answer["droits"] & NOTE;
+	  $answer["supreme"] = false;
 	}
 	mysql_query("UPDATE sid SET expiration='".date("Y-m-d H:i:s", time()+TEMPS_EXPIRE)."'$upd_req WHERE sid='$sid'");
 	$userinfo=$answer;
@@ -63,6 +67,15 @@ function gen_sid()
   return($res);
 }
 
+function do_level1()
+{
+  global $sqlPointer,$_COOKIE,$userinfo;
+  $req = "UPDATE sid SET expircomplet='00-00-00 00:00:00' WHERE numcbde=".$userinfo["numcbde"].";";
+  mysql_query($req, $sqlPointer) or die(mysql_error());
+  $userinfo["droits"] = $userinfo["droits"] & NOTE;
+  $userinfo["supreme"] = false;
+}
+
 function do_login($post)
 {
   global $sqlPointer,$_COOKIE,$userinfo;
@@ -84,14 +97,29 @@ function do_login($post)
 	}
       while($t['c'] != 0);
       // On supprime les anciennes sessions
+      // => on ne peut pas lancer plus d'une session en même temps avec un couple login/mdp
       $req = "DELETE FROM sid WHERE numcbde=".$traiter['numcbde'].";";
       // On commence une nouvelle session
       $req = "INSERT INTO sid (sid, expircomplet, expiration, numcbde)
-              VALUES ('".$s."', '".date("Y-m-d H:i:s", time()+TEMPS_EXPIRCOMPLET)."', '".date("Y-m-d H:i:s", time()+TEMPS_EXPIRE)."', ".$traiter['numcbde'].");";
+              VALUES ('".$s."', '";
+      if ($post["level"] == 2)
+	{
+	  $req .= date("Y-m-d H:i:s", time()+TEMPS_EXPIRCOMPLET);
+	}
+      else
+	{
+	  $req .= '00-00-00 00:00:00';
+	}
+      $req .= "', '".date("Y-m-d H:i:s", time()+TEMPS_EXPIRE)."', ".$traiter['numcbde'].");";
       mysql_query($req, $sqlPointer);
       setcookie('sid', $s);
       $reqb = "SELECT * FROM adherents WHERE numcbde='".$traiter['numcbde']."'";
       $userinfo=mysql_fetch_assoc(mysql_query($reqb));
+      if ($post["level"] != 2)
+	{
+	  $userinfo["droits"] = $userinfo["droits"] & NOTE;
+	  $userinfo["supreme"] = false;
+	}
       $_COOKIE['sid']=$s;
 
       return 0;
@@ -102,10 +130,11 @@ function do_login($post)
 
 function login_page($source, $msg)	
 {
+  global $userinfo;
   setcookie('source', $source);
   save('post', $_POST);
   save('get', $_GET);
-  $userinfo["numcbde"]=-1;
+  // $userinfo["numcbde"]=-1; << Pourquoi ai-je fais cela ?
   haut_de_page($userinfo,"Identification n&eacute;cessaire");
 ?>
 <!-- <p>Bienvenue sur <strong>phpnote</strong>.</p> -->

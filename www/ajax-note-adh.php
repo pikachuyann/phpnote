@@ -5,7 +5,7 @@ include("../php-include/common-includes.php");
 /*
   Pour afficher dynamiquement les noms de note associés au filtre dans la note
 */
-if (!su(ADHERENTS))
+if (!su(NOTE))
   {
     die("Cette page n'est pas accessible sans les droits appropriés");
   }

@@ -7,7 +7,7 @@ include("../php-include/common-includes.php");
 
 if(!su(NOTE))
   {
-    login_page("note.php", msg_nondroits(NOTE));
+    echo "<script type=\"text/javascript\"> document.location='note.php' </script>";
   }
 else
   {
