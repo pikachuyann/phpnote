@@ -16,6 +16,12 @@ include("../php-include/common-includes.php");
 */
 function str_real_pad($string, $taille, $alignement = STR_PAD_RIGHT)
 {
+/* Le seul but de ce morceau là de code (pile en dessous) est de compter le nombre de caractères UTF8 pour que str_pad mette bien le bon nombre d'espaces */
+$strlen1=strlen($string);
+$prout=utf8_decode($string);
+$strlen2=strlen($prout);
+$taille+=($strlen1-$strlen2);
+/* End */
   if (strlen($string) > $taille)
     {
       $chaine= substr($string, 0, $taille);
@@ -24,6 +30,7 @@ function str_real_pad($string, $taille, $alignement = STR_PAD_RIGHT)
     {
       $chaine= str_pad($string, $taille, " ", $alignement);
     }
+//$chaine=utf8_encode($chaine);
   return ereg_replace(" ","&nbsp;",$chaine);
 };
 
@@ -75,7 +82,7 @@ else if(!isset($_GET["nb"]))
 	$res .= str_real_pad($info["nom_emetteur"], 10)." ";
 	$res .= str_real_pad($info["nom_destinataire"], 10)." ";
 	$res .= str_real_pad($info["nom_conso"], 10)." ";
-	$res .= $info["montant"]." "; 
+	$res .= str_real_pad($info["montant"], 7)." "; 
 	if (!isset($_GET["adh"])) 
 	  { 
 	    if($info["valide"]) 

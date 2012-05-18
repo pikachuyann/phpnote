@@ -79,7 +79,7 @@ function fiche_page($numcbde)
 <?php
 	    if (su(NOTE)) {
 ?>
-<button onClick="historique_validate()">Valider tout</button>
+<!--<button onClick="historique_validate()">Valider tout</button>-->
 <button onClick="historique_unvalidate()">Dévalider tout</button>
 <?php
 	    }
