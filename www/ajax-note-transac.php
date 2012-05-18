@@ -9,6 +9,7 @@ if (!su(NOTE)) {
 	login_page("note.php", msg_nondroits(NOTE));
 }
 else {
+	if (isset($_GET["trClient"]) && isset($_GET["trConsos"])) {
 	$cli=$_GET["trClient"];
 	$con=$_GET["trConsos"];
 
@@ -32,6 +33,32 @@ else {
 				$requetes.="UPDATE adherents SET solde=solde-$cout WHERE numcbde=$emetteur;\n";
 				$requetes.="INSERT transactions(emetteur,recepteur,montant,idconso,commentaire,valide) VALUES('$emetteur','$receveur','$cout','$bouton','$commentaire',1);\n";
 			}
+		}
+	}
+
+	}	
+	elseif (isset($_GET["trInfo"])) {
+		$data=explode('|',$_GET["trInfo"]);
+		$emet = intval($data[0]);
+		$dest=intval($data[1]);
+		$cout=floatval($data[2]);
+		$rem = mysql_real_escape_string($data[3]);
+
+		$trNOK = 0;		
+
+		if ($emet == 0) { if ($dest == 0) { $trNOK = 1; } }
+		else {
+			$req = mysql_query("SELECT * FROM adherents WHERE numcbde=$emet");
+			$rep = mysql_fetch_array($req);
+			if ($rep["solde"] > $cout) {
+			}
+			else { $trNOK = 1;	}	
+		}
+
+		if ($trNOK == 0) {
+			$requetes.="UPDATE adherents SET solde=solde+$cout WHERE numcbde=$dest;\n";
+			$requetes.="UPDATE adherents SET solde=solde-$cout WHERE numcbde=$emet;\n";
+			$requetes.="INSERT transactions(emetteur,recepteur,montant,idconso,commentaire,valide) VALUES('$emet','$dest','$cout','-1','$rem',1);\n";			
 		}
 	}
 

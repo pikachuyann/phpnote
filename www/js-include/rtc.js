@@ -8,7 +8,17 @@
 
 function transfert_argent(emetteur, destinataire, montant, remarque)
 {
-    alert(emetteur+'|'+destinataire+'|'+montant+'|'+remarque);
+//    alert(emetteur+'|'+destinataire+'|'+montant+'|'+remarque);
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','http://phpnote.pikachuyann.fr/ajax-note-transac.php?trInfo='+emetteur+'|'+destinataire+'|'+montant+'|'+remarque);
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			historique_reset(-1);
+		}
+	};
+	xhr.send(null);
+	derniereRequeteC = xhr;
     // faire la transaction
 }
 
