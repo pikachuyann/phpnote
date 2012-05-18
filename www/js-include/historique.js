@@ -154,7 +154,10 @@ function historique_unvalidate()
     {
 	if (content.options[i].selected)
 	{
-	    alert("unvalid "+content.options[i].value);
+	    //alert("unvalid "+content.options[i].value);
+	    var xhr = new XMLHttpRequest();
+	    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-valid.php?tid='+encodeURIComponent(content.options[i].value)+'&action=0');
+	    xhr.send(null);
 	}
     }
 }
@@ -166,7 +169,10 @@ function historique_validate()
     {
 	if (content.options[i].selected)
 	{
-	    alert("valid "+content.options[i].value);
+	    //alert("valid "+content.options[i].value);
+	    var xhr = new XMLHttpRequest();
+	    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-valid.php?tid='+encodeURIComponent(content.options[i].value)+'&action=1');
+	    xhr.send(null);
 	}
     }
 }
