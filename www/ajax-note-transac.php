@@ -50,9 +50,8 @@ else {
 		else {
 			$req = mysql_query("SELECT * FROM adherents WHERE numcbde=$emet");
 			$rep = mysql_fetch_array($req);
-			if ($rep["solde"] > $cout) {
-			}
-			else { $trNOK = 1;	}	
+			if ($rep["solde"] < $cout) {	$trNOK = 1; }
+			else { }	
 		}
 
 		if ($trNOK == 0) {
