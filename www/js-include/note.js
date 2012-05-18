@@ -83,6 +83,16 @@ function draw_selection()
     }
     res = res + "</table>";
     selection.innerHTML = res;
+    var nom1, nom2;
+    var bb = document.getElementById("boite-boutons");
+    if (nom1 = bb.getElementById("nom1") && listeClients[0])
+    {
+	nom1.innerHTML = listeClients[0].note;
+    }
+    if (nom2 = document.getElementsByName("nom2") && listeClients[1])
+    {
+	nom2.innerHTML = listeClients[1].note;
+    }
 }
 
 /*
@@ -206,18 +216,4 @@ function search_adh()
 	xhr.send(null);
 	derniereRequeteA = xhr;
     }
-}
-
-/*
-  TO BE DONE
-  Ce sont les fonctions qui permettent d'afficher les champs spéciaux:
-    * Retrait
-    * Crédit
-    * Transfert
-*/
-function retrait()
-{
-    if (derniereRequeteC && derniereRequeteC.readyState < 4)
-	derniereRequeteC.abort();
-    document.getElementById('boite-boutons').innerHTML = "";
 }

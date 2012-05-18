@@ -44,6 +44,7 @@ else
 <button onClick="historique_validate()">Valider tout</button>
 <button onClick="historique_unvalidate()">D&eacute;valider tout</button>
 <script type="text/javascript" src="js-include/note.js"></script>
+<script type="text/javascript" src="js-include/rtc.js"></script>
 <script type="text/javascript" src="js-include/historique.js"></script>
 <script type="text/javascript"> historique_reset(-1); </script>
 
