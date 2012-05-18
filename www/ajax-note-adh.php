@@ -7,7 +7,7 @@ include("../php-include/common-includes.php");
 */
 if (!su(NOTE))
   {
-    die("Cette page n'est pas accessible sans les droits appropriés");
+    echo "<script type=\"text/javascript\"> document.location='note.php' </script>";
   }
 elseif (isset($_GET["filtre"]) && $_GET["filtre"] != "")
   {

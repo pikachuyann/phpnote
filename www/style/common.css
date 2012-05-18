@@ -65,9 +65,9 @@ BODY {
 .menu_interieur {
 	text-align:center;
 	border:solid 1px #3d496f;
-	margin-left:200px;
-	width:400px;
-	min-width:400px;
+	margin-left:150px;
+	width:500px;
+	min-width:500px;
 	font-variant:small-caps;
 }
 .menu_interieur A {
@@ -83,4 +83,14 @@ BODY {
 }
 .switchCategorie:hover {
 	font-weight:bold;
+}
+
+#historique {
+	width:600px;
+	font-family:Courier;
+}
+
+BUTTON {
+	width:150px;
+	min-width:100px;
 }

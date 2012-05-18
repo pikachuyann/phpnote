@@ -18,17 +18,18 @@ function str_real_pad($string, $taille, $alignement = STR_PAD_RIGHT)
 {
   if (strlen($string) > $taille)
     {
-      return substr($string, 0, $taille);
+      $chaine= substr($string, 0, $taille);
     }
   else
     {
-      return str_pad($string, $taille, " ", $alignement);
+      $chaine= str_pad($string, $taille, " ", $alignement);
     }
+  return ereg_replace(" ","&nbsp;",$chaine);
 };
 
 if (!su(NOTE))
   {
-    login_page("note.php", msg_nondroits(NOTE));
+    echo "<script type=\"text/javascript\"> document.location='note.php' </script>";
   }
 else if(!isset($_GET["nb"]))
   {

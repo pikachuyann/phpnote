@@ -2,7 +2,7 @@
 	include("../php-include/common-includes.php");
 
 	if (!su(BOUTONS)) {
-		echo "Reconnectez-vous";
+	         echo "<script type=\"text/javascript\"> document.location='boutons.php' </script>";
 	}
 	else {
 		if (isset($_GET["ctgId"])) {

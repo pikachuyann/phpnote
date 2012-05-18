@@ -3,7 +3,7 @@
 function gen_categories()
 {
   global $sqlPointer;
-  $req = "SELECT * FROM categories_boutons ORDER BY nom";
+  $req = "SELECT * FROM categories_boutons WHERE affichage=1 ORDER BY nom";
   $rep = mysql_query($req, $sqlPointer);
   echo "<table>";
   while($info = mysql_fetch_array($rep))

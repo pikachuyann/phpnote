@@ -6,7 +6,7 @@ include("../php-include/common-includes.php");
   C'est ici où on passe commande
 */
 if (!su(NOTE)) {
-	login_page("note.php", msg_nondroits(NOTE));
+    echo "<script type=\"text/javascript\"> document.location='note.php' </script>";
 }
 else {
 	if (isset($_GET["trClient"]) && isset($_GET["trConsos"])) {

@@ -8,7 +8,7 @@ include("../php-include/common-includes.php");
 */
 if (!su(ADHERENTS))
   {
-    die("Cette page n'est pas accessible sans les droits appropriés");
+    echo "<script type=\"text/javascript\"> document.location='adherents.php' </script>";
   }
 else
   {
