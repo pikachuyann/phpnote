@@ -94,3 +94,12 @@ BUTTON {
 	width:150px;
 	min-width:100px;
 }
+
+.afficheSelection {
+	min-width:200px;
+	width:200px;
+}
+#affiche_selection {
+	min-width:200px;
+	width:200px;
+}
