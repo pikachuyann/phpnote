@@ -89,10 +89,17 @@ BODY {
 	width:600px;
 	font-family:Courier;
 }
+#boutons_historique {
+	float:right;
+}
 
 BUTTON {
 	width:150px;
-	min-width:100px;
+	min-width:150px;
+}
+#boutons_historique BUTTON {
+	width:200px;
+	min-width:200px;
 }
 
 .afficheSelection {
@@ -102,4 +109,13 @@ BUTTON {
 #affiche_selection {
 	min-width:200px;
 	width:200px;
+}
+
+#search {
+	width:200px;
+	min-width:200px;
+}
+#boite-adh SELECT {
+	width:200px;
+	min-width:200px;
 }
