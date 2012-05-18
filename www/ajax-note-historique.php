@@ -32,7 +32,7 @@ if (!su(NOTE))
   }
 else if(!isset($_GET["nb"]))
   {
-    $offset = 0;
+    //$offset = 0;
     if (isset($_GET["offset"])) { $offset = $_GET["offset"]; }
     $count = 20;
     if (isset($_GET["count"])) { $count = $_GET["count"]; }
@@ -43,9 +43,12 @@ else if(!isset($_GET["nb"]))
                 FROM transactions AS t
                 INNER JOIN adherents AS a1 ON t.emetteur=a1.numcbde
                 INNER JOIN adherents AS a2 ON t.recepteur=a2.numcbde
-                INNER JOIN boutons AS b ON t.idconso=b.id
-                ORDER BY date DESC
-                LIMIT ".protect($offset).", ".protect($count).";";
+                INNER JOIN boutons AS b ON t.idconso=b.id ";
+	if (isset($offset)) {
+	  $req .= "WHERE t.id < ".protect($offset)." ";
+	} 
+        $req .= "ORDER BY t.id DESC
+                 LIMIT 0, ".protect($count).";";
       }
     else
       {
@@ -56,9 +59,12 @@ else if(!isset($_GET["nb"]))
                 INNER JOIN boutons AS b ON t.idconso=b.id
                 WHERE (a1.numcbde=".protect($_GET["adh"])." 
                 OR     a2.numcbde=".protect($_GET["adh"]).") 
-                AND    t.valide=1 
-                ORDER BY date DESC
-                LIMIT ".protect($offset).", ".protect($count).";";
+                AND    t.valide=1 ";
+	if (isset($offset)) {
+	  $req .= "AND    t.id < ".protect($offset)." ";
+	}
+	$req .= "ORDER BY id DESC
+                 LIMIT 0, ".protect($count).";";
       }
     $rep = mysql_query($req, $sqlPointer) or die(mysql_error());
     while($info = mysql_fetch_array($rep))

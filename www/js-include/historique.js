@@ -2,6 +2,7 @@ var myCurrentScroll = 0;
 var maxContent = 30;
 var nbTransac = 0;
 var derniereRequeteH;
+var h = document.getElementById('historique');
 
 /*
   L'argument adh permet de filtrer les résultat sur un adhérent en particulier.
@@ -25,18 +26,17 @@ function historique_scroll(sel, adh)
 	var xhr = new XMLHttpRequest();
 	if (adh == -1)
 	{
-	    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-historique.php?offset='+encodeURIComponent(maxContent));
+	    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-historique.php?offset='+encodeURIComponent(h.options[h.options.length -1].value));
 	}
 	else
 	{
-	    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-historique.php?offset='+encodeURIComponent(maxContent)+"&adh="+encodeURIComponent(adh));
+	    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-historique.php?offset='+encodeURIComponent(h.options[h.options.length - 1].value)+"&adh="+encodeURIComponent(adh));
 	}
 	xhr.onreadystatechange = function() {
 	    if (xhr.readyState == 4 && xhr.status == 200) {
-		var h = document.getElementById('historique');
 		h.innerHTML = h.innerHTML + xhr.responseText;
 		h.scrollTop = myCurrentScroll;
-		maxContent += 20;
+		maxContent = h.options.length;
 	    }
 	};
 	xhr.send(null);
@@ -99,7 +99,8 @@ function historique_really_reset(adh)
 	}
 	xhr.onreadystatechange = function() {
 	    if (xhr.readyState == 4 && xhr.status == 200) {
-		document.getElementById('historique').innerHTML = xhr.responseText;
+		h.innerHTML = xhr.responseText;
+		maxContent = h.options.length;
 		/*
 		  Remet à jour la liste des transactions
 		*/
