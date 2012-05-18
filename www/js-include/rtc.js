@@ -77,7 +77,7 @@ function draw_retrait()
     }
     res += "</span></td>de: <input type=\"text\" id=\"montant\"></input></td></tr>    <tr><td></td><td><button onClick=\"do_retrait()\">Retirer</button></td></tr>    </table>";
     bb.innerHTML = res;
-    alert(res);
+    //alert(res);
     listeConsos = new Array();
     draw_selection();
 }

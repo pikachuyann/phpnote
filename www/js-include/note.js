@@ -85,14 +85,45 @@ function draw_selection()
     selection.innerHTML = res;
     var nom1, nom2;
     var bb = document.getElementById("boite-boutons");
-    if (nom1 = bb.getElementById("nom1") && listeClients[0])
+/*    if (nom1 == document.getElementById("nom1") && listeClients[0])
     {
 	nom1.innerHTML = listeClients[0].note;
     }
-    if (nom2 = document.getElementsByName("nom2") && listeClients[1])
+    else if (nom1)
+    {
+	document.getElementById("nom1").innerHTML = nom1;
+//	nom1.innerHTML = '';
+    }
+    if (nom2 == document.getElementById("nom2") && listeClients[1])
     {
 	nom2.innerHTML = listeClients[1].note;
     }
+    else if (nom2)
+    {
+	document.getElementById("nom2").innerHTML = nom2;
+//	nom2.innerHTML = '';
+    }
+*/
+	if (document.getElementById("nom1") == null) {
+	}
+	else {
+		if (listeClients[0] == null) {
+			document.getElementById("nom1").innerHTML = '';
+		}
+		else {
+			document.getElementById("nom1").innerHTML = listeClients[0].note;
+		}
+	}
+	if (document.getElementById("nom2") == null) {
+	}
+	else {
+		if (listeClients[1] == null) {
+			document.getElementById("nom2").innerHTML = '';
+		}
+		else {
+			document.getElementById("nom2").innerHTML = listeClients[1].note;
+		}
+	}
 }
 
 /*

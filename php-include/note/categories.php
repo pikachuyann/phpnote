@@ -15,7 +15,7 @@ function gen_categories()
     }
   echo "<tr><td><button onClick=\"draw_credit()\">Cr&eacute;dit</button></td></tr>";
   echo "<tr><td><button onClick=\"draw_retrait()\">Retrait</button></td></tr>";
-  echo "<tr><td><button onClick=\"draw_tranfert()\">Transfert</button></td></tr>";
+  echo "<tr><td><button onClick=\"draw_transfert()\">Transfert</button></td></tr>";
   echo "</table>";
 }
 ?>
