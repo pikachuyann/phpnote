@@ -162,9 +162,10 @@ function historique_unvalidate()
 	    var xhr = new XMLHttpRequest();
 	    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-valid.php?tid='+encodeURIComponent(content.options[i].value)+'&action=0');
 	    xhr.onreadystatechange = function() {
-	    if (xhr.readyState == 4 && xhr.status == 200) {
-		historique_reset();
-	    }
+		if (xhr.readyState == 4 && xhr.status == 200) {
+		    historique_reset();
+		}
+	    };
 	    xhr.send(null);
 	}
     }
@@ -180,9 +181,11 @@ function historique_validate()
 	    //alert("valid "+content.options[i].value);
 	    var xhr = new XMLHttpRequest();
 	    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-valid.php?tid='+encodeURIComponent(content.options[i].value)+'&action=1');
-	    if (xhr.readyState == 4 && xhr.status == 200) {
-		historique_reset();
-	    }
+	    xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+		    historique_reset();
+		}
+	    };
 	    xhr.send(null);
 	}
     }
