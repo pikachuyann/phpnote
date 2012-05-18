@@ -52,8 +52,10 @@ function historique_scroll(sel, adh)
   Cf commentaire à l'intérieur
   DEPEND: www/ajax-note-historique.php
 */
+var madh = -1;
 function historique_reset(adh)
 {
+    madh = adh;
     var xhr = new XMLHttpRequest();
     if (adh == -1)
     {
@@ -161,13 +163,13 @@ function historique_unvalidate()
 	    //alert("unvalid "+content.options[i].value);
 	    var xhr = new XMLHttpRequest();
 	    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-valid.php?tid='+encodeURIComponent(content.options[i].value)+'&action=0');
-	    /*
+	    
 	    xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-		    historique_reset();
+		    historique_reset(madh);
 		}
 	    };
-	    */
+	    
 	    xhr.send(null);
 	}
     }
@@ -183,13 +185,13 @@ function historique_validate()
 	    //alert("valid "+content.options[i].value);
 	    var xhr = new XMLHttpRequest();
 	    xhr.open('GET', 'http://phpnote.pikachuyann.fr/ajax-note-valid.php?tid='+encodeURIComponent(content.options[i].value)+'&action=1');
-	    /*
+	    
 	    xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-		    historique_reset();
+		    historique_reset(madh);
 		}
 	    };
-	    */
+	    
 	    xhr.send(null);
 	}
     }

@@ -97,7 +97,7 @@ else
     if (isset($_GET["adh"]))
       {
 	$adh = $_GET["adh"];
-	$req .= " WHERE emetteur=".protect($adh)." OR recepteur=".protect($adh);
+	$req .= " WHERE (emetteur=".protect($adh)." OR recepteur=".protect($adh).") AND valide=1";
       }
     $req .= ";";
     $rep = mysql_query($req, $sqlPointer);
